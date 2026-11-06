@@ -18,6 +18,7 @@
     <div class="wrap">
       <a class="wordmark" href="./">John Colacioppo</a>
       <nav class="site-nav" aria-label="Main">
+        <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="resume.html">Resume</a>
         <a href="#contact">Contact</a>
@@ -61,21 +62,31 @@
       </figure>
     </section>
 
+    <section class="section" id="about" aria-labelledby="about-h">
+      <div class="wrap intro">
+        <h2 id="about-h">About me</h2>
+        <div>
+          <p>I'm a mechanical engineering student at the University of Connecticut, minoring in aerospace engineering, with my B.S. expected in May 2029. I specialize in composite structures: designing carbon fiber parts, analyzing them in ANSYS, and testing them to see whether the simulation holds up.</p>
+          <p>On the UConn Formula SAE team, I'm designing a carbon fiber anti-intrusion plate that is projected to be 78% lighter than the baseline design. To speed up that kind of work, I'm building COLA, a Python pipeline that automates layup studies in ANSYS Workbench and ACP, and I validate the results with physical tests such as punch-shear samples.</p>
+          <p>I also run Blue Bolt 3D, a small FDM printing business that makes parts for clients ranging from local shops to large companies. Running it has taught me to design around how parts actually get made, and that habit shows up in every project here.</p>
+          <p>My main technical interests are aerospace and defense systems, propulsion, structural design and thermal protection. My goal is a career designing lightweight aerospace structures, where strength, weight and manufacturability all have to be balanced. Right now I'm looking for internships where I can contribute to real design and analysis work.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="projects" aria-labelledby="projects-h">
       <div class="wrap">
         <h2 id="projects-h">Projects</h2>
 
         <article class="project">
           <figure class="project-figure">
-            <!-- Replace this placeholder with:
-                 <img src="assets/img/aip/acp-layup.jpg" alt="ANSYS ACP model of the anti-intrusion plate showing ply orientations"> -->
-            <div class="ph">Add a screenshot of the plate in ANSYS ACP<br><code>assets/img/aip/acp-layup.jpg</code></div>
+            <img src="assets/img/aip/thumbs/tested-set.jpg" alt="Carbon fiber sandwich samples after punch-shear testing" width="640" height="480" loading="lazy">
           </figure>
           <div>
             <h3><a href="projects/anti-intrusion-plate.html">Composite anti-intrusion plate</a></h3>
             <p class="context">UConn Formula SAE, 2025–present</p>
             <p class="stat"><b>78%</b> <span>projected weight reduction versus the baseline plate</span></p>
-            <p>Designing a carbon fiber anti-intrusion plate that meets the Structural Equivalency Spreadsheet (SES) requirements. I modeled the geometry in SOLIDWORKS, built custom orthotropic materials in ANSYS ACP, and tuned ply orientations for strength at the lowest mass. Punch-shear samples have been tested to validate the model.</p>
+            <p>Designing a carbon fiber anti-intrusion plate that meets the Structural Equivalency Spreadsheet (SES) requirements. I modeled the geometry in SOLIDWORKS, built custom orthotropic materials in ANSYS ACP, and tuned ply orientations for strength at the lowest mass. Sandwich samples of the layup have been punch-shear tested on an Instron to validate the model.</p>
             <p class="tools">SOLIDWORKS, ANSYS ACP, ANSYS Mechanical</p>
             <p><a class="more" href="projects/anti-intrusion-plate.html">Read the full project</a></p>
           </div>
@@ -88,17 +99,17 @@
             <div class="ph">Add a pipeline diagram or results screenshot<br><code>assets/img/cola/pipeline.jpg</code></div>
           </figure>
           <div>
-            <h3><a href="projects/layup-optimizer.html">C(Argon) Layup Optimizer</a></h3>
+            <h3><a href="projects/cola.html">COLA: Composite Optimization &amp; Logistics Automation</a></h3>
             <p class="context">Personal project for UConn Formula SAE, 2026–present</p>
-            <p>A Python pipeline that drives ANSYS Workbench and ACP to build and evaluate composite layups automatically, using a library of material definitions I wrote. The first target is the car's aero wing. Before using it on other parts, I'm checking its predictions against lab tests of the same layups.</p>
+            <p>My Python pipeline that drives ANSYS Workbench and ACP to build and evaluate composite layups automatically, using a library of material definitions I wrote. The first target is the car's aero wing. Before using it on other parts, I'm checking its predictions against lab tests of the same layups.</p>
             <p class="tools">Python, ANSYS Workbench, ANSYS ACP</p>
-            <p><a class="more" href="projects/layup-optimizer.html">Read the full project</a></p>
+            <p><a class="more" href="projects/cola.html">Read the full project</a></p>
           </div>
         </article>
 
         <article class="project">
           <figure class="project-figure">
-            <img src="assets/img/organizer/cad-exploded.jpg" alt="Onshape CAD model of the nightstand organizer, assembled and in exploded view" width="590" height="400" loading="lazy">
+            <img src="assets/img/organizer/hero-collage-thumb.jpg" alt="Photo collage of the finished 3D-printed nightstand organizer holding tissues, glasses and a phone" width="800" height="800" loading="lazy">
           </figure>
           <div>
             <h3><a href="projects/nightstand-organizer.html">3D-printed nightstand organizer</a></h3>

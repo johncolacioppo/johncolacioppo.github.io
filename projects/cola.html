@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COLA: Composite Optimization &amp; Logistics Automation — John Colacioppo</title>
+  <meta name="description" content="COLA (Composite Optimization &amp; Logistics Automation), a Python pipeline that automates composite layup studies in ANSYS Workbench and ACP for UConn Formula SAE parts.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/gallery.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../">John Colacioppo</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../#projects">Projects</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <!-- 1. Title, timeframe and final outcome first -->
+    <div class="case-head">
+      <a class="back" href="../#projects">All projects</a>
+      <h1>COLA</h1>
+      <p class="lede">Composite Optimization &amp; Logistics Automation</p>
+      <p class="timeframe">Personal project for UConn Formula SAE, 2026–present</p>
+      <p class="outcome">A Python pipeline that builds, solves and compares composite layups in ANSYS Workbench and ACP from a single script, checked against lab tests before it's trusted on car parts.</p>
+      <ul class="key-results">
+        <li><b>1 script</b><span>runs the whole study, from materials to solved results</span></li>
+        <!-- Replace or add results as you get them, for example:
+        <li><b>___</b><span>layups evaluated in one run</span></li>
+        <li><b>___ hrs → ___ min</b><span>setup time per layup, by hand versus automated</span></li> -->
+      </ul>
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Solo project</dd></div>
+        <div><dt>First target</dt><dd>FSAE aero wing</dd></div>
+        <div><dt>Status</dt><dd>In development</dd></div>
+        <div><dt>Tools</dt><dd>Python, ANSYS Workbench, ACP</dd></div>
+      </dl>
+      <ul class="toc" aria-label="On this page">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#objective">Objective and constraints</a></li>
+        <li><a href="#role">My role</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#results">Results</a></li>
+      </ul>
+    </div>
+
+    <div class="case-body">
+      <figure class="shot shot-wide">
+        <!-- Replace with: <img src="../assets/img/cola/pipeline.jpg" alt="Diagram of the optimizer pipeline"> -->
+        <div class="ph">Main image: a pipeline diagram or a results screenshot<br><code>assets/img/cola/pipeline.jpg</code></div>
+      </figure>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>COLA, short for Composite Optimization &amp; Logistics Automation, is my Python pipeline for composite design. Setting up a composite layup in ACP, solving it and comparing it with the last one takes a lot of repeated clicking. I'm building a tool that does that loop automatically, so I can compare many layups for a part and use the same method on any composite component on the car. The first part I'm using it on is the aero wing.</p>
+      </section>
+
+      <!-- 2. Objective and constraints -->
+      <section id="objective">
+        <h2>Objective and constraints</h2>
+        <p>Find the best layup for a composite part without setting up every option by hand, and make the results trustworthy enough to design from.</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th scope="col">Constraint</th><th scope="col">Limit</th></tr></thead>
+            <tbody>
+              <tr><td>Accuracy</td><td>Predictions have to match lab tests of the same layups before the tool is used on new parts</td></tr>
+              <tr><td>Materials</td><td>Has to use the team's actual fabrics, defined in my own XML material files</td></tr>
+              <tr><td>Software</td><td><span class="todo">add your ANSYS license type and any mesh or node limit it puts on the model</span></td></tr>
+              <tr><td>Run time</td><td><span class="todo">add how long one layup takes to solve and how many you need per study</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Specific role -->
+      <section id="role">
+        <h2>My role</h2>
+        <p>This is my own project. I designed the pipeline, wrote the Python code, built the material library and set up the validation tests.</p>
+      </section>
+
+      <!-- 4. Process and technical details -->
+      <section id="process">
+        <h2>Process and technical details</h2>
+
+        <h3>How the pipeline works</h3>
+        <p>Everything runs from <code>run_pipeline.py</code>, which drives ANSYS Workbench and ACP.</p>
+        <ol>
+          <li>Load material properties from my library of XML material definitions.</li>
+          <li><span class="todo">Generate the candidate layups (describe how: a fixed list, a parameter sweep, or an optimizer).</span></li>
+          <li>Build each layup in ACP on the part geometry and solve it in Workbench.</li>
+          <li><span class="todo">Score and rank the results (describe the criteria, such as mass, failure index or deflection).</span></li>
+        </ol>
+
+        <h3>Validation</h3>
+        <p>A simulation is only useful if it matches the real part, so I test the same layups in the lab and compare.</p>
+        <ul>
+          <li>Punch-shear tests on 100 × 100 mm samples: done, from the <a href="anti-intrusion-plate.html">anti-intrusion plate</a> work.</li>
+          <li>Three-point bend tests: planned.</li>
+        </ul>
+
+        <h3>Trade-offs</h3>
+        <ul>
+          <li><span class="todo">Add a design decision you made, such as how many layups to test versus total run time, or how much detail to keep in the mesh.</span></li>
+        </ul>
+      </section>
+
+      <!-- 5. Visuals -->
+      <section id="gallery" class="gallery">
+        <h2>Gallery</h2>
+        <p class="gallery-note">Select any image to see it full size. Use the arrow keys to move between images.</p>
+
+        <!-- To add an image, replace a placeholder <li> with:
+        <li><figure><a class="g-item" href="../assets/img/cola/FILE.jpg"><img src="../assets/img/cola/FILE.jpg" alt="What the image shows" loading="lazy"></a><figcaption>Your caption.</figcaption></figure></li>
+             For a video clip:
+        <li><figure><video src="../assets/img/cola/FILE.mp4" controls muted playsinline preload="metadata"></video><figcaption>Your caption.</figcaption></figure></li> -->
+
+        <h3>CAD and models</h3>
+        <ul class="gallery-grid">
+          <li><figure><div class="ph">Aero wing geometry<br><code>cola/wing.jpg</code></div><figcaption>The aero wing, the first part run through the pipeline.</figcaption></figure></li>
+          <li><figure><div class="ph">Generated ACP model<br><code>cola/acp-model.jpg</code></div><figcaption>A layup built automatically in ACP.</figcaption></figure></li>
+        </ul>
+
+        <h3>Analysis and code</h3>
+        <ul class="gallery-grid">
+          <li><figure><div class="ph">Results comparison or ranking plot<br><code>cola/results.jpg</code></div><figcaption>Candidate layups compared side by side.</figcaption></figure></li>
+          <li><figure><div class="ph">Simulation versus test plot<br><code>cola/validation.jpg</code></div><figcaption>Predicted against measured results.</figcaption></figure></li>
+          <li><figure><div class="ph">Code or terminal screenshot<br><code>cola/code.jpg</code></div><figcaption>The pipeline running.</figcaption></figure></li>
+        </ul>
+
+        <h3>Physical testing</h3>
+        <ul class="gallery-grid">
+          <li><figure><div class="ph">Test samples<br><code>cola/samples.jpg</code></div><figcaption>Samples made for validation.</figcaption></figure></li>
+          <li><figure><div class="ph">Three-point bend setup<br><code>cola/bend-test.jpg</code></div><figcaption>Bend test setup.</figcaption></figure></li>
+          <li><figure><div class="ph">Explainer video<br><code>cola/explainer.mp4</code> or a YouTube embed</div><figcaption>How the pipeline works, start to finish.</figcaption></figure></li>
+        </ul>
+      </section>
+
+      <!-- 6. Results and impact -->
+      <section id="results">
+        <h2>Results and impact</h2>
+        <ul>
+          <li><span class="todo">Add what works today, for example "Runs end to end on the aero wing" or "Evaluates ___ layups in ___ hours".</span></li>
+          <li><span class="todo">Add how the simulation compared to the punch-shear tests.</span></li>
+        </ul>
+
+        <h3>What's next</h3>
+        <p>Get the pipeline running end to end on the aero wing, finish the bend tests, and publish the explainer video. <span class="todo">Add a GitHub link here if the code is public.</span></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><p>© 2026 John Colacioppo</p></div>
+  </footer>
+</body>
+</html>

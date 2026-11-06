@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>3D-printed nightstand organizer — John Colacioppo</title>
-  <meta name="description" content="Survey-driven nightstand organizer: concept testing, 3D-printed prototype in PETG and PLA, and a redesign for injection molding.">
+  <meta name="description" content="Nightstand organizer taken from user survey to 3D-printed prototype to an injection-molding redesign. Passed 5/5 fit requirements with 14 user testers.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/gallery.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -26,125 +27,212 @@
   </header>
 
   <main id="main" class="wrap">
+    <!-- 1. Title, timeframe and final outcome first -->
     <div class="case-head">
       <a class="back" href="../#projects">All projects</a>
       <h1>3D-printed nightstand organizer</h1>
-      <p class="lede">One printed piece that holds a phone, chargers, glasses and tissues, taken from user survey to working prototype to an injection-molding redesign.</p>
+      <p class="timeframe">IB Design Technology HL design project, 2024–May 2025</p>
+      <p class="outcome">A printed organizer that holds a phone, two chargers, glasses and tissues in one footprint. It passed all five fit requirements, 14 users rated it 8.1/10 for looks, and I redesigned it for injection molding at 250–500 units.</p>
+      <ul class="key-results">
+        <li><b>5/5</b><span>fit requirements met with every item in place at once</span></li>
+        <li><b>11 of 14</b><span>testers gave ease of use the top score</span></li>
+        <li><b>8.6/10</b><span>survey rating for the chosen concept, against 2.2–5.4 for the other three</span></li>
+      </ul>
       <dl class="facts">
-        <div><dt>Context</dt><dd>IB Design Technology HL</dd></div>
-        <div><dt>Completed</dt><dd>May 2025</dd></div>
+        <div><dt>Type</dt><dd>Individual project</dd></div>
         <div><dt>Prototype</dt><dd>8 printed parts, press-fit</dd></div>
+        <div><dt>Materials</dt><dd>PETG, PLA (prototype); ABS, HDPE (production)</dd></div>
         <div><dt>Tools</dt><dd>Onshape, Bambu Studio, Bambu Lab P1S</dd></div>
       </dl>
+      <ul class="toc" aria-label="On this page">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#objective">Objective and constraints</a></li>
+        <li><a href="#role">My role</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#results">Results</a></li>
+      </ul>
     </div>
 
     <div class="case-body">
       <figure class="shot shot-wide">
-        <img src="../assets/img/organizer/prototype-annotated.jpg" alt="Printed prototype with labels: phone stand doubling as an alarm clock, glasses on the nose, green storage bin, small item storage area, and tissue access" width="620" height="496">
-        <figcaption>The printed prototype. The phone rests on the stand as a bedside clock, glasses sit on the nose, and tissues pull from the back.</figcaption>
+        <img src="../assets/img/organizer/hero-collage.jpg" alt="Photo collage of the finished gray 3D-printed organizer: a tissue pulling out of the nose, glasses resting on the nose, a green storage bin, and a phone on the stand showing the time" width="1600" height="1600">
+        <figcaption>The finished prototype. Glasses rest on the nose, tissues pull out of the nose itself, the green bin holds small items, and the phone sits on the stand as a bedside clock.</figcaption>
       </figure>
 
-      <h2>The problem</h2>
-      <p>Nightstands collect a phone, chargers, glasses, tissues and an alarm clock in a small space, which leads to tangled cords and clutter. Wireless charging stations are a common fix, but the source I cited found they use about 47% more power than a cable, and new EU rules on standard chargers make products with built-in chargers go obsolete. I wanted an organizer that works with the user's own cables.</p>
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>Nightstands collect a phone, chargers, glasses and tissues in a small space, and the cords end up tangled. Instead of a wireless charging station, I designed an organizer that works with the user's own cables and gives every item a fixed place. The project ran the full design cycle: user research, four concepts, cardboard and printed prototypes, user testing, a second iteration, and a production redesign for injection molding.</p>
+      </section>
 
-      <h2>Requirements</h2>
-      <p>I surveyed high school students on what they keep on their nightstand. Chargers, phones and glasses came out on top, so those drove the spec:</p>
-      <ul>
-        <li>Hold two of the user's own chargers, a pair of glasses, and at least 45 tissues (half a standard box).</li>
-        <li>Fit on a standard nightstand without taking more room than the loose items did.</li>
-        <li>Look modern: clean lines, neutral color, smooth surfaces, and still be a talking point.</li>
-        <li>Print on a standard FDM printer with a 256 × 256 mm bed, in no more than two build plates.</li>
-      </ul>
+      <!-- 2. Objective and constraints -->
+      <section id="objective">
+        <h2>Objective and constraints</h2>
+        <p>Make one product that holds everything a teenager keeps on their nightstand while taking up less space than those items did loose. I avoided wireless charging on purpose: the source I cited found it uses about 47% more power than a cable, and new EU rules on standard chargers make products with built-in chargers go obsolete.</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th scope="col">Constraint</th><th scope="col">Limit</th><th scope="col">Where it came from</th></tr></thead>
+            <tbody>
+              <tr><td>Function</td><td>Two of the user's own chargers, one pair of glasses, at least 45 tissues</td><td>User survey; 45 is half a standard 90-sheet box</td></tr>
+              <tr><td>Size</td><td>Footprint of 56.25–90 sq in at most</td><td>25% of a standard nightstand top (calculation below)</td></tr>
+              <tr><td>Manufacturing</td><td>Printable on an FDM printer, 256 × 256 mm bed, two build plates at most</td><td>Bambu Lab print bed size; fewer seams keeps the look clean</td></tr>
+              <tr><td>Cost and material</td><td>Cheap, widely available, rigid enough to hold its shape</td><td>Led to PLA and PETG filament</td></tr>
+              <tr><td>Appearance</td><td>Modern: clean lines, neutral color, smooth, and still a talking point</td><td>Modern design references</td></tr>
+              <tr><td>Quantity</td><td>One high-fidelity prototype</td><td>Enough to test function and looks before production</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-      <h2>Concepts and testing</h2>
-      <p>I sketched four concepts, modeled them in Onshape and built cardboard mockups of each to check that every item fit and that the footprint suited a real nightstand. I then ran a visual survey where people rated each design from 1 to 10 and suggested changes.</p>
+        <h3>Footprint calculation</h3>
+        <p>Standard nightstands run 15–20 in wide and 15–18 in deep. I capped the organizer at a quarter of the top so the rest stays usable.</p>
+        <div class="calc">
+          <p>Smallest top: 15 in × 15 in = 225 sq in, and 225 ÷ 4 = 56.25 sq in</p>
+          <p>Largest top: 20 in × 18 in = 360 sq in, and 360 ÷ 4 = 90 sq in</p>
+          <p class="result">Target footprint: 56.25–90 sq in</p>
+        </div>
+      </section>
 
-      <div class="shot-pair">
-        <figure class="shot">
-          <img src="../assets/img/organizer/concept-sketches.jpg" alt="Hand sketches of the initial organizer concepts with notes" width="649" height="559" loading="lazy">
-          <figcaption>Early sketches.</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="../assets/img/organizer/cardboard-prototype.jpg" alt="Cardboard mockup of the chosen design with a phone, glasses and tissues in place" width="648" height="600" loading="lazy">
-          <figcaption>Cardboard mockup of design 4, used for the fit test.</figcaption>
-        </figure>
-      </div>
+      <!-- 3. Specific role -->
+      <section id="role">
+        <h2>My role</h2>
+        <p>This was an individual project, so I did every part of it myself:</p>
+        <ul>
+          <li>Wrote and ran the user surveys, and analyzed the results.</li>
+          <li>Sketched the four concepts and modeled each one in Onshape.</li>
+          <li>Built cardboard mockups and ran the fit tests.</li>
+          <li>Designed the final eight-part assembly and its press-fit joints, and made the drawing package.</li>
+          <li>Sliced and printed every part, wrote the manufacturing plan, and assembled the prototype.</li>
+          <li>Ran the user tests, redesigned the parts that fell short, and designed the injection molds for the production version.</li>
+        </ul>
+      </section>
 
-      <div class="table-scroll">
-        <table class="data">
-          <thead><tr><th scope="col">Design</th><th scope="col">Average rating</th><th scope="col">What users asked for</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>5.4/10</td><td>A pointed top; a rotating interior to lock items in</td></tr>
-            <tr><td>2</td><td>4.8/10</td><td>More side compartments</td></tr>
-            <tr><td>3</td><td>2.2/10</td><td>Keep the slanted phone rest for another design</td></tr>
-            <tr class="picked"><td>4</td><td>8.6/10</td><td>Turn the "mouth" into a drawer; close off the back so tissues don't fall out; add a phone rest</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>Design 4 won clearly, and its weak points were easy to fix. Design 1 was too hard to produce, design 2 took the most space with no dedicated spot for each item, and design 3 made the glasses hard to reach. I carried design 3's slanted phone rest into the final design.</p>
+      <!-- 4. Process and technical details -->
+      <section id="process">
+        <h2>Process and technical details</h2>
 
-      <h2>Prototype</h2>
-      <figure class="shot">
-        <img src="../assets/img/organizer/cad-exploded.jpg" alt="Final Onshape CAD model, assembled and exploded, showing the head, nose, ears, back plate and green bin" width="590" height="400" loading="lazy">
-        <figcaption>Final CAD model in Onshape, assembled and exploded.</figcaption>
-      </figure>
-      <ul>
-        <li>Eight parts: head, back plate, MagSafe cover, top and bottom nose, two ears, and a storage bin.</li>
-        <li>Printed on a Bambu Lab P1S at 0.2 mm layer height and 15% infill.</li>
-        <li>Main structure in PETG (about a 16-hour print), bin in PLA (about 2 hours).</li>
-        <li>Assembled with press fits. The ears, back plate and cover tap in with a rubber mallet.</li>
-      </ul>
-      <p>I also wrote a manufacturing plan covering slicing, printer prep, first-layer checks, cleanup and assembly, with a quality check and risk note for each step.</p>
+        <h3>User research</h3>
+        <p>I asked 11 high school students what they keep on their nightstand. The most common items were a phone charger and a phone (8 of 11 each) and glasses (6 of 11), so those set the function requirements.</p>
 
-      <figure class="shot shot-wide">
-        <img src="../assets/img/organizer/drawing-bom.jpg" alt="Engineering drawing sheet with exploded view and bill of materials" width="1600" height="1236" loading="lazy">
-        <figcaption>Drawing package with exploded view and bill of materials.</figcaption>
-      </figure>
+        <h3>Concepts and selection</h3>
+        <p>I sketched four concepts, modeled each in Onshape and built a cardboard mockup of each one. The mockups went on a real nightstand to check that every item fit and the size made sense. Then I ran a visual survey where people rated each design from 1 to 10 and suggested changes.</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th scope="col">Design</th><th scope="col">Rating</th><th scope="col">Why it did or didn't move forward</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>5.4/10</td><td>Too hard to produce even one, let alone many</td></tr>
+              <tr><td>2</td><td>4.8/10</td><td>Largest footprint, no dedicated spot per item, and a spinning mechanism that added complexity</td></tr>
+              <tr><td>3</td><td>2.2/10</td><td>Glasses hard to reach, but its slanted phone rest was worth keeping</td></tr>
+              <tr class="picked"><td>4</td><td>8.6/10</td><td>Chosen. Most liked, and its weak points were easy to fix</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>I folded the survey feedback into design 4: the "mouth" became a drawer, the back was closed off so tissues don't fall out, and I added the slanted phone rest from design 3.</p>
 
-      <h2>Results</h2>
-      <div class="table-scroll">
-        <table class="data">
-          <thead><tr><th scope="col">Test</th><th scope="col">Result</th></tr></thead>
-          <tbody>
-            <tr><td>Fits every required item at once</td><td>5/5</td></tr>
-            <tr><td>Ease of use (most common rating)</td><td>5/5</td></tr>
-            <tr><td>Modern look (most common rating)</td><td>8/10</td></tr>
-            <tr><td>Better than their current setup (most common rating)</td><td>4/5</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>Users asked for a drop-in glasses holder, more modular parts, a vertical phone mount, a watch charger and a light. I redesigned the glasses slot with an open top so it fits taller frames, and added a watch charger mount in the open space.</p>
+        <h3>Detailed design</h3>
+        <ul>
+          <li>Eight parts: head, back plate, MagSafe cover, top and bottom nose, two ears and a storage bin. The head is 8.0 in tall with a 3.59 in deep base.</li>
+          <li>Glasses rest on the nose and the ears hold the arms. The nose doubles as the tissue dispenser: tissues load through a door on the back and pull out through the nose.</li>
+          <li>All joints are press fits, and the bin slides into a groove. Nothing needs glue or screws to assemble.</li>
+        </ul>
 
-      <figure class="shot">
-        <img src="../assets/img/organizer/watch-charger.jpg" alt="CAD render of the added watch charger part" width="621" height="524" loading="lazy">
-        <figcaption>New watch charger part, added after user testing.</figcaption>
-      </figure>
+        <h3>Material and manufacturing choices</h3>
+        <ul>
+          <li>Printed on a Bambu Lab P1S at 0.2 mm layer height and 15% infill, which gave enough strength and a clean enough surface for the look I wanted.</li>
+          <li>Main structure in PETG for stiffness (about 16 hours); the bin in PLA (about 2 hours).</li>
+          <li>Wrote a 12-step manufacturing plan with timing, a quality check and a safety note for each step, from slicing to final assembly.</li>
+        </ul>
 
-      <h2>Designing for production</h2>
-      <p>The last step was taking the design from one printed prototype to something a factory could make.</p>
-      <ul>
-        <li>Switched to injection molding: ABS for the structural parts for its stiffness, impact strength and dimensional stability, and HDPE for the bin.</li>
-        <li>Designed the molds for every part, allowing for plastic shrinkage.</li>
-        <li>Flattened the inside of the head to remove a small gap that would be hard to mold.</li>
-        <li>Split the head into top and bottom pieces so each can come out of a mold.</li>
-        <li>Planned batch production, starting at 250–500 units, based on demand for similar products on Amazon.</li>
-      </ul>
+        <h3>Iteration after testing</h3>
+        <ul>
+          <li>The glasses slot in the ears wasn't tall enough for some frames, so I opened up the top so any frame drops in.</li>
+          <li>Testers asked for a watch charger, so I designed a new mount for the large open space below the nose.</li>
+        </ul>
 
-      <figure class="shot shot-wide">
-        <img src="../assets/img/organizer/dfm-changes.jpg" alt="Before and after renders: the inside flattened flush with the top surface, and the head split into top and bottom parts" width="1346" height="497" loading="lazy">
-        <figcaption>Two of the design-for-manufacturing changes.</figcaption>
-      </figure>
+        <h3>Designing for production</h3>
+        <ul>
+          <li>Switched from printing to injection molding: ABS for the structural parts for its stiffness, impact strength and dimensional stability, and HDPE for the bin for toughness and chemical resistance.</li>
+          <li>Designed a mold for each part, allowing for plastic shrinkage.</li>
+          <li>Flattened the inside of the head to remove a small gap that would be hard to mold, and split the head into top and bottom pieces so each could come out of a mold.</li>
+        </ul>
 
-      <div class="shot-pair">
-        <figure class="shot">
-          <img src="../assets/img/organizer/mold-half.jpg" alt="CAD model of an injection mold half" width="820" height="554" loading="lazy">
-          <figcaption>One of the mold halves.</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="../assets/img/organizer/commercial-render.jpg" alt="Render of the commercial version of the organizer" width="643" height="942" loading="lazy">
-          <figcaption>Commercial version.</figcaption>
-        </figure>
-      </div>
+        <h3>Trade-offs</h3>
+        <ul>
+          <li>Cables over wireless charging: less convenient to set down, but more efficient, cheaper and compatible with any phone.</li>
+          <li>Design 4 over design 2: I gave up the rotating storage idea because the mechanism was hard to balance and made the items harder to reach.</li>
+          <li>Batch production of 250–500 units over mass production: higher cost per unit because the mold cost is spread over fewer parts, but much less risk and room to change the design. Similar products on Amazon sell over 1,500 units a month, so demand could support scaling up later.</li>
+        </ul>
+      </section>
+
+      <!-- 5. Visuals -->
+      <section id="gallery" class="gallery">
+        <h2>Gallery</h2>
+        <p class="gallery-note">Select any image to see it full size. Use the arrow keys to move between images.</p>
+
+        <h3>CAD and drawings</h3>
+        <ul class="gallery-grid">
+          <li><figure><a class="g-item" href="../assets/img/organizer/cad-exploded.jpg"><img src="../assets/img/organizer/cad-exploded.jpg" alt="Onshape model assembled and exploded" loading="lazy"></a><figcaption>Final Onshape model, assembled and exploded.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/drawing-bom.jpg"><img src="../assets/img/organizer/drawing-bom.jpg" alt="Drawing sheet with exploded view and bill of materials" loading="lazy"></a><figcaption>Assembly drawing with bill of materials and press-fit callouts.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/drawing-views.jpg"><img src="../assets/img/organizer/drawing-views.jpg" alt="Multi-view drawing of the assembly" loading="lazy"></a><figcaption>Multi-view drawing showing the press-fit and slide-in joints.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/drawing-head.jpg"><img src="../assets/img/organizer/drawing-head.jpg" alt="Dimensioned drawing of the head part" loading="lazy"></a><figcaption>Head part drawing: 8.0 in tall, 3.59 in deep at the base.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/concept-cad.jpg"><img src="../assets/img/organizer/concept-cad.jpg" alt="Early CAD model of design 4" loading="lazy"></a><figcaption>Design 4 as a first CAD concept, before survey feedback.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/cad-design2.jpg"><img src="../assets/img/organizer/cad-design2.jpg" alt="Hexagonal CAD concept for design 2" loading="lazy"></a><figcaption>Design 2 concept, with a rotating interior.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/cad-design3.jpg"><img src="../assets/img/organizer/cad-design3.jpg" alt="CAD concept for design 3 with slanted phone rest" loading="lazy"></a><figcaption>Design 3 concept. Its slanted phone rest made it into the final design.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/ear-redesign-drawing.jpg"><img src="../assets/img/organizer/ear-redesign-drawing.jpg" alt="Old and new drawings of the ear part" loading="lazy"></a><figcaption>Ear part before and after: the closed glasses slot became an open top.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/watch-charger.jpg"><img src="../assets/img/organizer/watch-charger.jpg" alt="Render of the watch charger mount" loading="lazy"></a><figcaption>Watch charger mount added after user testing.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/dfm-changes.jpg"><img src="../assets/img/organizer/dfm-changes.jpg" alt="Before and after renders of two design-for-manufacturing changes" loading="lazy"></a><figcaption>Design-for-manufacturing changes: interior flattened, head split in two.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/mold-half.jpg"><img src="../assets/img/organizer/mold-half.jpg" alt="CAD model of an injection mold half" loading="lazy"></a><figcaption>Injection mold half, designed with shrinkage allowance.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/mold-split.jpg"><img src="../assets/img/organizer/mold-split.jpg" alt="Two-part mold shown in different colors" loading="lazy"></a><figcaption>Two-part mold for the head, halves shown in different colors.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/commercial-render.jpg"><img src="../assets/img/organizer/commercial-render.jpg" alt="Render of the commercial version" loading="lazy"></a><figcaption>Commercial version, ready for molding.</figcaption></figure></li>
+        </ul>
+
+        <h3>Analysis and test data</h3>
+        <ul class="gallery-grid">
+          <li><figure><a class="g-item" href="../assets/img/organizer/footprint-calc.jpg"><img src="../assets/img/organizer/footprint-calc.jpg" alt="Diagram of a nightstand top with a 25 percent footprint area marked" loading="lazy"></a><figcaption>Footprint limit: 25% of a standard nightstand top, 56.25–90 sq in.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/survey-items.jpg"><img src="../assets/img/organizer/survey-items.jpg" alt="Bar chart of items students keep on their nightstand" loading="lazy"></a><figcaption>Research survey: what 11 students keep on their nightstand.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/chart-ease.jpg"><img src="../assets/img/organizer/chart-ease.jpg" alt="Bar chart of ease-of-use ratings" loading="lazy"></a><figcaption>Ease of use: 11 of 14 testers gave it 5/5, the rest 4/5.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/chart-aesthetics.jpg"><img src="../assets/img/organizer/chart-aesthetics.jpg" alt="Bar chart of aesthetics ratings" loading="lazy"></a><figcaption>Modern look: average 8.1/10, with 8 the most common score.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/chart-effectiveness.jpg"><img src="../assets/img/organizer/chart-effectiveness.jpg" alt="Bar chart of effectiveness ratings" loading="lazy"></a><figcaption>Compared with their current setup: average 4.1/5.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/concept-sketches.jpg"><img src="../assets/img/organizer/concept-sketches.jpg" alt="Sheet of concept sketches with pros and cons" loading="lazy"></a><figcaption>Early idea sheet, with pros and cons for each.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/sketch-design1.jpg"><img src="../assets/img/organizer/sketch-design1.jpg" alt="Sketches and renders of design 1" loading="lazy"></a><figcaption>Design 1 sketches and form studies.</figcaption></figure></li>
+        </ul>
+
+        <h3>Physical prototypes</h3>
+        <ul class="gallery-grid">
+          <li><figure><a class="g-item photo" href="../assets/img/organizer/final-tissue.jpg"><img src="../assets/img/organizer/final-tissue.jpg" alt="Front of the printed organizer with a tissue pulling out of the nose" loading="lazy"></a><figcaption>Tissues pull out through the nose and refill through a door on the back.</figcaption></figure></li>
+          <li><figure><a class="g-item photo" href="../assets/img/organizer/final-glasses-bin.jpg"><img src="../assets/img/organizer/final-glasses-bin.jpg" alt="Glasses on the nose with the green storage bin below" loading="lazy"></a><figcaption>Glasses on the nose, with the PLA bin slid into the lower opening.</figcaption></figure></li>
+          <li><figure><a class="g-item photo" href="../assets/img/organizer/final-phone-clock.jpg"><img src="../assets/img/organizer/final-phone-clock.jpg" alt="Phone on the stand showing the time while charging" loading="lazy"></a><figcaption>Phone on the stand, charging and showing the time.</figcaption></figure></li>
+          <li><figure><a class="g-item photo" href="../assets/img/organizer/final-side.jpg"><img src="../assets/img/organizer/final-side.jpg" alt="Side view of the printed organizer" loading="lazy"></a><figcaption>Side view showing the slanted phone rest and the ear.</figcaption></figure></li>
+          <li><figure><a class="g-item photo" href="../assets/img/organizer/final-front.jpg"><img src="../assets/img/organizer/final-front.jpg" alt="Front view with the lower compartment empty" loading="lazy"></a><figcaption>Lower compartment empty, before the bin goes in.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/problem-nightstand.jpg"><img src="../assets/img/organizer/problem-nightstand.jpg" alt="Cluttered nightstand with tangled cords and a bulky alarm clock" loading="lazy"></a><figcaption>The starting problem: four tangled cords and no spot for glasses.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/cardboard-design1.jpg"><img src="../assets/img/organizer/cardboard-design1.jpg" alt="Cardboard mockup of design 1 with notes" loading="lazy"></a><figcaption>Cardboard mockup of design 1, with fit-test notes.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/cardboard-design2.jpg"><img src="../assets/img/organizer/cardboard-design2.jpg" alt="Cardboard mockup of design 2 with notes" loading="lazy"></a><figcaption>Cardboard mockup of design 2.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/cardboard-design3.jpg"><img src="../assets/img/organizer/cardboard-design3.jpg" alt="Cardboard mockup of design 3 holding a phone and tissues" loading="lazy"></a><figcaption>Cardboard mockup of design 3.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/cardboard-prototype.jpg"><img src="../assets/img/organizer/cardboard-prototype.jpg" alt="Cardboard mockup of design 4 with phone, glasses and tissues" loading="lazy"></a><figcaption>Cardboard mockup of design 4, the chosen concept.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/prototype-annotated.jpg"><img src="../assets/img/organizer/prototype-annotated.jpg" alt="Printed prototype with each feature labeled" loading="lazy"></a><figcaption>Printed prototype with every item in place.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/ease-of-use-photo.jpg"><img src="../assets/img/organizer/ease-of-use-photo.jpg" alt="Prototype with phone and glasses, labeled for ease of use" loading="lazy"></a><figcaption>Phone grabs from the front; glasses slide on and off.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/aesthetics-photo.jpg"><img src="../assets/img/organizer/aesthetics-photo.jpg" alt="Three views of the printed prototype" loading="lazy"></a><figcaption>Neutral gray PETG with smooth, low-texture surfaces.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/organizer/glasses-slot-issue.jpg"><img src="../assets/img/organizer/glasses-slot-issue.jpg" alt="Close-up of the glasses slot that was too short" loading="lazy"></a><figcaption>Issue found in testing: the glasses slot was too short for some frames.</figcaption></figure></li>
+        </ul>
+      </section>
+
+      <!-- 6. Results and impact -->
+      <section id="results">
+        <h2>Results and impact</h2>
+        <p>I tested the prototype against the spec with a fit check and a survey of 14 users.</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th scope="col">Test</th><th scope="col">Result</th></tr></thead>
+            <tbody>
+              <tr><td>Fit requirements</td><td>5/5: 45 tissues, glasses, phone, a small item and tissue access, all at once</td></tr>
+              <tr><td>Ease of use</td><td>Average 4.8/5; 11 of 14 gave the top score</td></tr>
+              <tr><td>Modern look</td><td>Average 8.1/10; most common score 8</td></tr>
+              <tr><td>Better than current setup</td><td>Average 4.1/5; nobody rated it below 3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The lowest score was effectiveness. Several testers didn't have much cord clutter to begin with, so the organizer solved less for them. Their feedback led to two changes I made: an open-top glasses slot and a watch charger mount. Other requests I logged for a future version were a vertical phone mount, a light and more modular parts.</p>
+        <p class="callout">The project took a design from a survey to a working prototype to a molding-ready version. Along the way I learned to treat user data as a design input and to design for how a part will actually be made.</p>
+      </section>
     </div>
   </main>
 

@@ -18,11 +18,29 @@ Search the project for `class="todo"` and `class="ph"`. Those are the spots that
 
 Image folders:
 
-- `assets/img/aip/` — anti-intrusion plate (ACP screenshot, SOLIDWORKS model, stress plot, punch-shear photo)
-- `assets/img/cola/` — layup optimizer (pipeline diagram or results)
+- `assets/img/aip/` — anti-intrusion plate. Fabrication and test photos and videos are in; still needed: SOLIDWORKS model, assembly, ACP plies, and stress, failure and deformation plots. Put full-size images here and 640 px versions in `aip/thumbs/`.
+- `assets/img/cola/` — COLA (pipeline diagram, results, code screenshot, explainer video)
 - `assets/img/organizer/` — already filled from the IB project PDF
 
 Save screenshots as `.jpg` around 1400 px wide to keep pages fast.
+
+## Adding gallery photos
+
+Each project page has a Gallery section split into groups (CAD and drawings, Analysis, Physical testing). To add a photo, put the file in the project's image folder and replace one of the dashed placeholder `<li>` blocks with:
+
+```html
+<li><figure><a class="g-item" href="../assets/img/aip/FILE.jpg"><img src="../assets/img/aip/FILE.jpg" alt="What the image shows" loading="lazy"></a><figcaption>Your caption.</figcaption></figure></li>
+```
+
+Clicking any gallery image opens it full size with its caption, and the arrow keys move between images. For a short video clip (keep it under about 20 MB, GitHub's web upload limit is 25 MB), use:
+
+```html
+<li><figure><video src="../assets/img/aip/FILE.mp4" controls muted playsinline preload="metadata"></video><figcaption>Your caption.</figcaption></figure></li>
+```
+
+## Page structure
+
+Every project page follows the same order: title, timeframe and outcome first, then overview, objective and constraints, my role, process and technical details, gallery, and results and impact.
 
 ## Updating the resume
 
@@ -34,8 +52,9 @@ Replace `assets/John_Colacioppo_Resume.pdf` with the new PDF, keeping the same f
 index.html                        Home: intro, projects, skills, contact
 resume.html                       Embedded resume with download button
 projects/anti-intrusion-plate.html
-projects/layup-optimizer.html
+projects/cola.html                COLA (Composite Optimization & Logistics Automation)
 projects/nightstand-organizer.html
 css/style.css                     All styling (light and dark mode)
+js/gallery.js                     Full-size image viewer for galleries
 assets/                           Resume PDF, favicon, images
 ```
