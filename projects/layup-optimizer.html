@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C(Argon) Layup Optimizer — John Colacioppo</title>
+  <meta name="description" content="Python pipeline that automates composite layup studies in ANSYS Workbench and ACP.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../">John Colacioppo</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../#projects">Projects</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="case-head">
+      <a class="back" href="../#projects">All projects</a>
+      <h1>C(Argon) Layup Optimizer</h1>
+      <p class="lede">A Python pipeline that sets up, solves and compares composite layups in ANSYS without clicking through every one by hand.</p>
+      <dl class="facts">
+        <div><dt>Context</dt><dd>Personal project for UConn FSAE</dd></div>
+        <div><dt>Timeline</dt><dd>2026–present</dd></div>
+        <div><dt>First target</dt><dd>Aero wing</dd></div>
+        <div><dt>Tools</dt><dd>Python, ANSYS Workbench, ACP</dd></div>
+      </dl>
+    </div>
+
+    <div class="case-body">
+      <figure class="shot shot-wide">
+        <!-- Replace with: <img src="../assets/img/cola/pipeline.jpg" alt="..."> -->
+        <div class="ph">Add a pipeline diagram or a results screenshot<br><code>assets/img/cola/pipeline.jpg</code></div>
+      </figure>
+
+      <h2>Why I built it</h2>
+      <p>Working on the anti-intrusion plate showed me how slow it is to set up a layup in ACP, solve it and compare it with the last one. Every new stacking sequence meant repeating the same steps. I wanted a tool that could run those studies for me and apply the same method to any composite part on the car.</p>
+
+      <h2>How it works</h2>
+      <p>The whole pipeline starts from one script, <code>run_pipeline.py</code>, which drives ANSYS Workbench and ACP.</p>
+      <ol>
+        <li>Load material properties from my own library of XML material definitions.</li>
+        <li><span class="todo">Generate the candidate layups to test (describe how: fixed list, parameter sweep, or optimizer).</span></li>
+        <li>Build each layup in ACP on the part geometry and solve it in Workbench.</li>
+        <li><span class="todo">Score and rank the results (describe the criteria: mass, failure index, deflection).</span></li>
+      </ol>
+
+      <figure class="shot">
+        <!-- Swap for an embed once the explainer video is up, for example:
+             <iframe width="100%" style="aspect-ratio:16/9;border:0" src="https://www.youtube.com/embed/VIDEO_ID" title="How the layup optimizer works" allowfullscreen></iframe> -->
+        <div class="ph">Explainer video coming soon</div>
+      </figure>
+
+      <h2>Validating it</h2>
+      <p>A simulation is only useful if it matches the real part, so I'm testing the same layups in the lab before trusting the tool on anything new.</p>
+      <ul>
+        <li>Punch-shear tests on 100 × 100 mm samples: done, from the <a href="anti-intrusion-plate.html">anti-intrusion plate</a> work.</li>
+        <li>Three-point bend tests: planned.</li>
+      </ul>
+
+      <h2>What's next</h2>
+      <p>Get the pipeline running end to end on the aero wing, finish the bend tests, and publish the explainer video. <span class="todo">Add a GitHub link here if the code is public.</span></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><p>© 2026 John Colacioppo</p></div>
+  </footer>
+</body>
+</html>

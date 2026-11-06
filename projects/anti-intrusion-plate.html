@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Composite anti-intrusion plate — John Colacioppo</title>
+  <meta name="description" content="Carbon fiber anti-intrusion plate for UConn Formula SAE, designed in SOLIDWORKS and ANSYS ACP.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../">John Colacioppo</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../#projects">Projects</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="case-head">
+      <a class="back" href="../#projects">All projects</a>
+      <h1>Composite anti-intrusion plate</h1>
+      <p class="lede">Replacing the car's baseline anti-intrusion plate with a carbon fiber design that passes the SES, at a fraction of the weight.</p>
+      <dl class="facts">
+        <div><dt>Team</dt><dd>UConn Formula SAE</dd></div>
+        <div><dt>Timeline</dt><dd>2025–present</dd></div>
+        <div><dt>My role</dt><dd>Composite design and simulation</dd></div>
+        <div><dt>Tools</dt><dd>SOLIDWORKS, ANSYS ACP, Mechanical</dd></div>
+      </dl>
+    </div>
+
+    <div class="case-body">
+      <figure class="shot shot-wide">
+        <!-- Replace with: <img src="../assets/img/aip/acp-layup.jpg" alt="..."> -->
+        <div class="ph">Add the main image: the plate in ACP with ply orientations shown<br><code>assets/img/aip/acp-layup.jpg</code></div>
+      </figure>
+
+      <h2>The problem</h2>
+      <p>The anti-intrusion plate sits between the impact attenuator and the front bulkhead. In a frontal crash it stops the attenuator from punching into the driver's footwell. The rules give a metal baseline plate; a composite plate is allowed only if the team proves it's equivalent through the Structural Equivalency Spreadsheet and physical testing.</p>
+      <p>Carbon fiber can do the job at much lower mass, but only if the layup is right. Ply angles, count and stacking order all change how the plate carries a punch load.</p>
+
+      <h2>What I did</h2>
+      <ul>
+        <li>Modeled the plate geometry in SOLIDWORKS as part of a multidisciplinary team.</li>
+        <li>Defined custom orthotropic material models in ANSYS ACP (Pre) so the simulation reflects the fabrics the team actually lays up.</li>
+        <li>Compared ply orientations and stacking sequences in ACP and ANSYS Mechanical, looking for the lightest layup that still meets the SES requirements.</li>
+        <li>Weighed producibility alongside performance. The AP Tech triaxial layup is the team's preferred option because it's the easiest to produce.</li>
+      </ul>
+
+      <div class="shot-pair">
+        <figure class="shot">
+          <!-- Replace with: <img src="../assets/img/aip/solidworks.jpg" alt="..."> -->
+          <div class="ph">SOLIDWORKS model of the plate<br><code>assets/img/aip/solidworks.jpg</code></div>
+        </figure>
+        <figure class="shot">
+          <!-- Replace with: <img src="../assets/img/aip/stress-result.jpg" alt="..."> -->
+          <div class="ph">Simulation result (stress or failure criterion plot)<br><code>assets/img/aip/stress-result.jpg</code></div>
+        </figure>
+      </div>
+
+      <h2>Results</h2>
+      <p class="callout"><strong>78% projected weight reduction</strong> versus the baseline design, based on the ANSYS ACP simulation.</p>
+      <p>To check the simulation against reality, I tested 100 × 100 mm punch-shear samples of the layup. <span class="todo">Add the measured failure load and how it compared to the prediction.</span></p>
+
+      <figure class="shot">
+        <!-- Replace with: <img src="../assets/img/aip/punch-shear.jpg" alt="..."> -->
+        <div class="ph">Photo of the punch-shear test setup or a failed sample<br><code>assets/img/aip/punch-shear.jpg</code></div>
+      </figure>
+
+      <h2>What's next</h2>
+      <p>Finish correlating the test data with the model, then carry the validated material and layup data into my <a href="layup-optimizer.html">layup optimizer</a> so the same method can be used on other parts of the car.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><p>© 2026 John Colacioppo</p></div>
+  </footer>
+</body>
+</html>
