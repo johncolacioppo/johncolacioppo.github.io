@@ -36,7 +36,7 @@
       <p class="outcome">An automated ANSYS Workbench and ACP workflow for composite layups, built by AI agents from my idea and my initial AIP study. Its predictions land within 1% of our lab punch-shear tests on the anti-intrusion plate samples.</p>
       <ul class="key-results">
         <li><b>Sim = test</b><span>matched the lab punch-shear results for both sandwich layups</span></li>
-        <li><b>&lt;1%</b><span>gap between predicted and measured first-peak load</span></li>
+        <li><b>250% → &lt;1%</b><span>model error, from the first lab comparison to now</span></li>
         <li><b>12 layups</b><span>set up, solved and ranked in 11 minutes for a punch-test sweep</span></li>
       </ul>
       <dl class="facts">
@@ -65,6 +65,10 @@
         <h2>Overview</h2>
         <p>COLA is an agentic AI workflow: AI agents wrote and refine the code, and I direct them as the engineer. I came up with the idea and ran the initial anti-intrusion plate study by hand. Then I had Claude and Gemini work together to turn that study into an automated workflow that sets up, solves and compares composite layups in ANSYS.</p>
         <p>I didn't write the Python. My work is the engineering: defining what the tool has to predict, giving it data on our parts, materials and test results, checking its output against the lab, and steering the agents until the two agree.</p>
+        <figure class="shot shot-wide">
+          <video src="../assets/img/cola/cola-explainer.mp4" poster="../assets/img/cola/cola-explainer-poster.jpg" controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;background:#111a23;border-radius:4px;display:block"></video>
+          <figcaption>Explainer video (7 min): the problem COLA solves, its inputs, the iteration loop, and how the model error came down from 250% to under 1%.</figcaption>
+        </figure>
       </section>
 
       <!-- 2. Objective and constraints -->
@@ -118,13 +122,13 @@
         <ol>
           <li><strong>Match the part to the rules.</strong> COLA reads the CAD file name and picks one of 13 FSAE 2027 rule presets, such as the anti-intrusion plate, aero wing, side impact panel or punch-test coupon. The preset sets the loads, deflection limits and safety factors.</li>
           <li><strong>Load the materials.</strong> Properties come from 13 XML material definitions, with ply thicknesses and areal weights replaced by values measured on our own wet-layup samples.</li>
-          <li><strong>Build the sweep.</strong> Every listed fabric is tried across a range of ply counts, both as a solid laminate and as a Nomex honeycomb sandwich.</li>
+          <li><strong>Build the sweep.</strong> For every listed fabric, as a solid laminate and as a Nomex honeycomb sandwich, COLA starts at the minimum ply count and adds one ply at a time until the layup passes.</li>
           <li><strong>Solve.</strong> Each layup is built in ACP and solved in ANSYS Mechanical with no one clicking through it.</li>
-          <li><strong>Check and rank.</strong> Each result is checked against the preset's FSAE criteria: deflection, Tsai-Wu safety factor on the skins, and crush and shear on the core. Passing layups are ranked lightest first, using the team's resin and part-weight calculator, and the run writes contour plots, trade-off charts and a recommended layup.</li>
+          <li><strong>Check, iterate and rank.</strong> Each result is checked against the preset's FSAE criteria: deflection, Tsai-Wu safety factor on the skins, and crush and shear on the core. Passing layups are ranked lightest first, using the team's resin and part-weight calculator, and the run writes contour plots, trade-off charts and a recommended layup.</li>
         </ol>
 
         <h3>Getting closer to the lab</h3>
-        <p>Instead of trading accuracy for speed, I keep pushing COLA toward the real test data. Every time I give it more information about how our parts are actually built, its predictions get closer to what we measure on the Instron.</p>
+        <p>Instead of trading accuracy for speed, I keep pushing COLA toward the real test data. The first comparison with our lab tests was off by as much as 250% because of modeling errors. Every time I gave it more information about how our parts are actually built, its predictions got closer, until the error was within 1%.</p>
         <ul>
           <li><strong>Measured inputs:</strong> cured ply thicknesses and weights from calipers and scales on our samples, and the real 0.19 in Nomex core.</li>
           <li><strong>One calibrated value:</strong> the core's effective crush strength includes our adhesive bond lines, so no data sheet has it. COLA found the single value, 3.95 MPa, that reproduces both sandwich punch tests at once. One value matching two different layups is why I trust it on the bend test next.</li>
@@ -173,7 +177,6 @@
           <li><figure><a class="g-item" href="../assets/img/cola/lab-twill6.jpg"><img src="../assets/img/cola/thumbs/lab-twill6.jpg" alt="Instron force-displacement curve, twill sample 6" loading="lazy"></a><figcaption>Instron curve, twill sample 6.</figcaption></figure></li>
           <li><figure><a class="g-item" href="../assets/img/cola/lab-triaxial1.jpg"><img src="../assets/img/cola/thumbs/lab-triaxial1.jpg" alt="Instron force-displacement curve, triaxial sample 1" loading="lazy"></a><figcaption>Instron curve, solid triaxial sample 1.</figcaption></figure></li>
           <li><figure><a class="g-item" href="../assets/img/cola/lab-triaxial2.jpg"><img src="../assets/img/cola/thumbs/lab-triaxial2.jpg" alt="Instron force-displacement curve, triaxial sample 2" loading="lazy"></a><figcaption>Instron curve, solid triaxial sample 2.</figcaption></figure></li>
-          <li><figure><div class="ph">Explainer video<br><code>cola/explainer.mp4</code> or a YouTube embed</div><figcaption>How COLA works, start to finish.</figcaption></figure></li>
         </ul>
       </section>
 
@@ -190,7 +193,7 @@
           </table>
         </div>
         <ul>
-          <li><strong>Matches the lab today:</strong> COLA reproduces our physical punch-shear results on the anti-intrusion plate samples.</li>
+          <li><strong>Matches the lab today:</strong> COLA reproduces our physical punch-shear results on the anti-intrusion plate samples. Model error went from up to 250% on the first test to under 1%.</li>
           <li><strong>Fast:</strong> a 12-layup punch-test sweep runs in 11 minutes, and a 12-layup 3-point bend sweep in about an hour, on my workstation.</li>
           <li><strong>Impact:</strong> with a validated model, the team can predict results before spending scarce Instron time or paying for outsourced tests.</li>
         </ul>
