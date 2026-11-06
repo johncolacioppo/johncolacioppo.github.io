@@ -18,7 +18,7 @@ Search the project for `class="todo"` and `class="ph"`. Those are the spots that
 
 Image folders:
 
-- `assets/img/aip/` — anti-intrusion plate. Fabrication and test photos and videos are in; still needed: SOLIDWORKS model, assembly, ACP plies, and stress, failure and deformation plots. Put full-size images here and 640 px versions in `aip/thumbs/`.
+- `assets/img/aip/` — anti-intrusion plate. Fabrication, test and analysis images are in. Put full-size images here and 640 px versions in `aip/thumbs/`.
 - `assets/img/cola/` — COLA (pipeline diagram, results, code screenshot, explainer video)
 - `assets/img/organizer/` — already filled from the IB project PDF
 
