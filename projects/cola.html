@@ -35,7 +35,7 @@
       <p class="timeframe">Agentic AI workflow for UConn Formula SAE, 2026–present</p>
       <p class="outcome">An automated ANSYS Workbench and ACP workflow for composite layups, built by AI agents from my idea and my initial AIP study. Its predictions land within 1% of our lab punch-shear tests on the anti-intrusion plate samples.</p>
       <ul class="key-results">
-        <li><b>Sim = test</b><span>matched the lab punch-shear results for both sandwich layups</span></li>
+        <li><b>0.6%</b><span>largest gap between predicted and measured first-peak load</span></li>
         <li><b>250% → &lt;1%</b><span>model error, from the first lab comparison to now</span></li>
         <li><b>12 layups</b><span>set up, solved and ranked in 11 minutes for a punch-test sweep</span></li>
       </ul>
@@ -43,7 +43,7 @@
         <div><dt>Type</dt><dd>Agentic AI workflow</dd></div>
         <div><dt>Built with</dt><dd>Claude and Gemini</dd></div>
         <div><dt>Status</dt><dd>Internal tool; not public</dd></div>
-        <div><dt>Tools</dt><dd>Python, ANSYS Workbench and ACP (UConn student license)</dd></div>
+        <div><dt>Tools</dt><dd>Python, ANSYS Workbench and ACP (UConn student license), agentic AI</dd></div>
       </dl>
       <ul class="toc" aria-label="On this page">
         <li><a href="#overview">Overview</a></li>
@@ -63,8 +63,8 @@
 
       <section id="overview">
         <h2>Overview</h2>
-        <p>COLA is an agentic AI workflow: AI agents wrote and refine the code, and I direct them as the engineer. I came up with the idea and ran the initial anti-intrusion plate study by hand. Then I had Claude and Gemini work together to turn that study into an automated workflow that sets up, solves and compares composite layups in ANSYS.</p>
-        <p>I didn't write the Python. My work is the engineering: defining what the tool has to predict, giving it data on our parts, materials and test results, checking its output against the lab, and steering the agents until the two agree.</p>
+        <p>COLA is an automated ANSYS Workbench and ACP workflow that sets up, solves and ranks composite layups against the FSAE rules. I conceived it from my manual anti-intrusion plate study and own its engineering: what it has to predict, the FSAE rule logic it checks, the material data it runs on, and its validation against our Instron tests.</p>
+        <p>I built it as an agentic AI workflow. Gemini and Claude wrote the Python under my direction, and I calibrated the material models against physical test data until the model error dropped from 250% to under 1%.</p>
         <figure class="shot shot-wide">
           <video src="../assets/img/cola/cola-explainer.mp4" poster="../assets/img/cola/cola-explainer-poster.jpg" controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;background:#111a23;border-radius:4px;display:block"></video>
           <figcaption>Explainer video (7 min): the problem COLA solves, its inputs, the iteration loop, and how the model error came down from 250% to under 1%.</figcaption>
@@ -118,6 +118,9 @@
         <h2>Process and technical details</h2>
 
         <h3>How the workflow runs</h3>
+        <figure class="shot shot-wide">
+          <img src="../assets/img/cola/pipeline.svg" alt="COLA workflow diagram: inputs feed a build, solve and check loop that adds a ply on failure, then ranks passing layups and validates against Instron tests" width="1200" height="505" style="background:#fff;padding:.5rem">
+        </figure>
         <p>Everything starts from one launcher, <code>RUN_PIPELINE.bat</code>, which runs <code>run_pipeline.py</code> and drives ANSYS Workbench in the background.</p>
         <ol>
           <li><strong>Match the part to the rules.</strong> COLA reads the CAD file name and picks one of 13 FSAE 2027 rule presets, such as the anti-intrusion plate, aero wing, side impact panel or punch-test coupon. The preset sets the loads, deflection limits and safety factors.</li>

@@ -35,6 +35,7 @@
           <a class="btn btn-solid" href="#projects">See projects</a>
           <a class="btn" href="resume.html">View resume</a>
         </div>
+        <p class="seeking">Seeking Summer 2027 R&amp;D internships</p>
       </div>
       <figure>
         <svg class="plystack" viewBox="0 0 560 475" role="img" aria-labelledby="plyT plyD" xmlns="http://www.w3.org/2000/svg">
@@ -94,16 +95,14 @@
 
         <article class="project">
           <figure class="project-figure">
-            <!-- Replace this placeholder with:
-                 <img src="assets/img/cola/pipeline.jpg" alt="Diagram or screenshot of the layup optimizer pipeline"> -->
-            <div class="ph">Add a pipeline diagram or results screenshot<br><code>assets/img/cola/pipeline.jpg</code></div>
+            <img src="assets/img/cola/pipeline.svg" alt="COLA workflow: part CAD, material data and FSAE rules feed an automated loop of building the layup in ANSYS ACP, solving in Mechanical and checking the rules, adding a ply on failure, then ranking passing layups and validating against Instron tests" width="1200" height="505" loading="lazy">
           </figure>
           <div>
             <h3><a href="projects/cola.html">COLA: Composite Optimization &amp; Logistics Automation</a></h3>
             <p class="context">Agentic AI workflow for UConn Formula SAE, 2026–present</p>
-            <p class="stat"><b>Sim = test</b> <span>matched our lab punch-shear results on the AIP samples</span></p>
-            <p>An automated ANSYS Workbench and ACP workflow for composite layups. I came up with the idea and ran the initial study, and Claude and Gemini built the code. I keep feeding it part and test data so its predictions match our lab results, which saves scarce Instron time and outsourced tests.</p>
-            <p class="tools">Claude, Gemini, Python, ANSYS Workbench, ANSYS ACP</p>
+            <p class="stat"><b>0.6%</b> <span>largest gap between predicted and measured punch-shear first-peak load</span></p>
+            <p>An automated ANSYS Workbench and ACP workflow that sets up, solves and ranks composite layups against the FSAE rules. I conceived it, defined what it checks, and calibrated its material models against our Instron tests, taking model error from 250% to under 1%. AI agents wrote the Python under my direction. Accurate predictions save scarce Instron time and outsourced tests.</p>
+            <p class="tools">Python, ANSYS Workbench, ANSYS ACP, agentic AI workflows</p>
             <p><a class="more" href="projects/cola.html">Read the full project</a></p>
           </div>
         </article>
@@ -114,10 +113,10 @@
           </figure>
           <div>
             <h3><a href="projects/nightstand-organizer.html">3D-printed nightstand organizer</a></h3>
-            <p class="context">IB Design Technology HL design project, completed May 2025</p>
-            <p class="stat"><b>8.6/10</b> <span>survey rating for the chosen concept, against 2.2–5.4 for the other three</span></p>
-            <p>A desk organizer shaped like a stylized head that holds a phone, chargers, glasses and tissues in one footprint. I surveyed users, built cardboard and printed prototypes, tested them against my spec, then redesigned the parts for injection molding.</p>
-            <p class="tools">Onshape, Bambu Studio, Bambu Lab P1S, PETG and PLA</p>
+            <p class="context">IB Design Technology HL design project, May 2025</p>
+            <p class="stat"><b>250–500</b> <span>units in the first planned production batch, redesigned for injection molding</span></p>
+            <p>An eight-part organizer for a phone, chargers, glasses and tissues. After printing and testing the prototype, I redesigned it for production: a mold for every part with shrinkage allowance, the head split into two moldable pieces, an interior gap removed so it fills cleanly, and a first batch planned at 250–500 units.</p>
+            <p class="tools">Onshape, mold design, ABS and HDPE, Bambu Lab P1S</p>
             <p><a class="more" href="projects/nightstand-organizer.html">Read the full project</a></p>
           </div>
         </article>
@@ -128,7 +127,7 @@
             <p class="context">My 3D printing business</p>
           </div>
           <div>
-            <p>I run Blue Bolt 3D, a small business doing quick, high-quality FDM printing for clients ranging from local shops to large companies. Precision SLA printing is coming soon.</p>
+            <p>I run Blue Bolt 3D, a small business doing quick, high-quality FDM printing for clients ranging from local shops to large companies. Every job means turning a client's part into something that prints right the first time: choosing the material, print orientation and slicer settings for how the part will be used, then delivering fast enough to support their prototyping. Precision SLA printing is coming soon.</p>
             <!-- Add a link if Blue Bolt 3D has a site or Instagram:
                  <p><a href="https://...">Visit Blue Bolt 3D</a></p> -->
           </div>
@@ -142,7 +141,8 @@
         <dl class="skills">
           <div><dt>CAD</dt><dd>SOLIDWORKS, Onshape</dd></div>
           <div><dt>Simulation</dt><dd>ANSYS ACP, Mechanical, SpaceClaim, Workbench</dd></div>
-          <div><dt>Programming</dt><dd>Python for ANSYS automation</dd></div>
+          <div><dt>Testing and validation</dt><dd>Instron mechanical testing (FSAE perimeter shear), correlating FEA with test data, FSAE rules and SES compliance, precision measurement</dd></div>
+          <div><dt>Automation</dt><dd>Agentic AI workflows, Python-driven ANSYS automation</dd></div>
           <div><dt>Fabrication</dt><dd>FDM and SLA printing, Bambu Studio, PrusaSlicer, hand and power tools, shop safety</dd></div>
           <div><dt>Research and planning</dt><dd>Experimental design, survey methods, data analysis, project management</dd></div>
         </dl>
@@ -152,10 +152,11 @@
     <section class="section" id="contact" aria-labelledby="contact-h">
       <div class="wrap">
         <h2 id="contact-h">Contact</h2>
-        <p>I'm looking for internships in aerospace, defense and structural design. The fastest way to reach me is email.</p>
+        <p>I'm looking for R&amp;D internships for Summer 2027. The fastest way to reach me is email.</p>
         <ul class="contact-list">
           <li><span>Email</span> <a href="mailto:JohnColacioppo@gmail.com">JohnColacioppo@gmail.com</a></li>
           <li><span>LinkedIn</span> <a href="https://www.linkedin.com/in/john-colacioppo">linkedin.com/in/john-colacioppo</a></li>
+          <li><span>GitHub</span> <a href="https://github.com/johncolacioppo">github.com/johncolacioppo</a></li>
           <li><span>Resume</span> <a href="assets/John_Colacioppo_Resume.pdf">Download PDF</a></li>
         </ul>
       </div>

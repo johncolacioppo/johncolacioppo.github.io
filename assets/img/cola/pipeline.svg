@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 505" role="img" aria-labelledby="t d" font-family="Archivo, Helvetica Neue, Arial, sans-serif">
+  <title id="t">COLA workflow</title>
+  <desc id="d">Inputs (part CAD, measured material data, FSAE 2027 rule presets) feed COLA, which builds a layup in ANSYS ACP, solves it in ANSYS Mechanical and checks it against the rules. Failing layups get one more ply and loop back; passing layups are ranked lightest first. Results are compared with Instron lab tests, and the gap feeds back into the material data.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1a2533"/>
+    </marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8a6410"/>
+    </marker>
+    <style>
+      .box{fill:#ffffff;stroke:#1a2533;stroke-width:2}
+      .inp{fill:#eef0f1;stroke:#5d6876;stroke-width:1.5}
+      .hl{fill:#fbf3dc;stroke:#c9971c;stroke-width:2}
+      .h{font-size:19px;font-weight:700;fill:#1a2533}
+      .s{font-size:14px;fill:#5d6876}
+      .lbl{font-size:14px;font-weight:600;fill:#1a2533}
+      .gl{font-size:14px;font-weight:600;fill:#8a6410}
+      .ln{stroke:#1a2533;stroke-width:2;fill:none}
+      .lg{stroke:#c9971c;stroke-width:2.5;fill:none;stroke-dasharray:7 5}
+    </style>
+  </defs>
+
+  <!-- Inputs -->
+  <text x="30" y="40" class="lbl">Inputs</text>
+  <rect class="inp" x="30" y="56" width="220" height="74" rx="6"/>
+  <text x="46" y="88" class="h">Part CAD</text>
+  <text x="46" y="112" class="s">Surface geometry</text>
+  <rect class="inp" x="30" y="146" width="220" height="74" rx="6"/>
+  <text x="46" y="178" class="h">Material data</text>
+  <text x="46" y="202" class="s">13 XMLs, measured plies</text>
+  <rect class="inp" x="30" y="236" width="220" height="74" rx="6"/>
+  <text x="46" y="268" class="h">FSAE 2027 rules</text>
+  <text x="46" y="292" class="s">13 presets: loads, limits</text>
+
+  <path class="ln" d="M250 93 H280 V183 H306" marker-end="url(#a)"/>
+  <path class="ln" d="M250 183 H306" marker-end="url(#a)"/>
+  <path class="ln" d="M250 273 H280 V183"/>
+
+  <!-- Core loop -->
+  <rect class="box" x="310" y="146" width="170" height="74" rx="6"/>
+  <text x="326" y="178" class="h">Build layup</text>
+  <text x="326" y="202" class="s">ANSYS ACP</text>
+
+  <path class="ln" d="M480 183 H520" marker-end="url(#a)"/>
+  <rect class="box" x="524" y="146" width="170" height="74" rx="6"/>
+  <text x="540" y="178" class="h">Solve</text>
+  <text x="540" y="202" class="s">ANSYS Mechanical</text>
+
+  <path class="ln" d="M694 183 H734" marker-end="url(#a)"/>
+  <rect class="box" x="738" y="146" width="190" height="74" rx="6"/>
+  <text x="754" y="178" class="h">Check rules</text>
+  <text x="754" y="202" class="s">Tsai-Wu, core, deflection</text>
+
+  <!-- fail loop -->
+  <path class="ln" d="M833 146 V96 H395 V140" marker-end="url(#a)"/>
+  <text x="560" y="86" class="lbl">Fail: add one ply and rebuild</text>
+
+  <!-- pass -->
+  <path class="ln" d="M928 183 H968" marker-end="url(#a)"/>
+  <text x="932" y="168" class="lbl">Pass</text>
+  <rect class="box" x="972" y="146" width="198" height="74" rx="6"/>
+  <text x="988" y="178" class="h">Rank and record</text>
+  <text x="988" y="202" class="s">Lightest passing layup</text>
+
+  <!-- validation -->
+  <path class="ln" d="M1071 220 V384" marker-end="url(#a)"/>
+  <rect class="hl" x="900" y="388" width="270" height="86" rx="6"/>
+  <text x="918" y="422" class="h">Lab validation</text>
+  <text x="918" y="446" class="s">Instron punch-shear, same layups</text>
+
+  <path class="lg" d="M900 431 H14 V183 H26" marker-end="url(#g)"/>
+  <text x="300" y="462" class="gl">Feed the gap back into the material data until prediction matches test</text>
+  <text x="300" y="486" class="s">Model error: up to 250% on the first comparison, under 1% now</text>
+
+  <!-- AI band -->
+  <rect x="310" y="250" width="618" height="44" rx="6" fill="#eef0f1"/>
+  <text x="326" y="278" class="s">Automated in Python written by AI agents (Gemini and Claude); I direct and validate it</text>
+</svg>
