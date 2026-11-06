@@ -73,7 +73,7 @@
           <table class="data">
             <thead><tr><th scope="col">Constraint</th><th scope="col">Limit</th></tr></thead>
             <tbody>
-              <tr><td>Rules</td><td>FSAE composite AIP rules: the plate must not fail under a 120 kN static load spread over the 200 × 100 mm minimum impact attenuator area, proven with laminate tests plus perimeter shear and 3-point bending analysis</td></tr>
+              <tr><td>Rules</td><td>FSAE Rules F.8.2.1(c) and F.8.3: a composite plate must not fail in a frontal impact and must carry a 120 kN static load spread over the 200 × 100 mm minimum impact attenuator area. We are proving this through F.8.3.2(b): laminate tests (F.4.2.2 three-point bend, F.4.2.5 perimeter shear) plus calculations.</td></tr>
               <tr><td>Weight</td><td>As light as possible; the baseline plate weighs 3.45 lb</td></tr>
               <tr><td>Size</td><td>15 × 16 in, to cover the front bulkhead behind the impact attenuator</td></tr>
               <tr><td>Manufacturing</td><td>Has to be buildable by the team, so a simpler layup wins when performance is close</td></tr>
@@ -113,16 +113,16 @@
         <ol>
           <li>Modeled the plate in SOLIDWORKS and brought the surface into ANSYS.</li>
           <li>Built orthotropic material definitions in ACP: separate stiffness and strength values along and across the fibers, instead of one isotropic value like steel.</li>
-          <li>Compared ply angles, ply counts and stacking orders against the FSAE composite AIP criteria: no failure under 120 kN spread over the 200 × 100 mm impact attenuator area, checked through perimeter shear and 3-point bending.</li>
+          <li>Compared fabrics, ply counts and stacking orders against the F.8.3.1 criteria: no failure under 120 kN spread over the 200 × 100 mm impact attenuator area, checked through perimeter shear and 3-point bending per F.8.3.2(b). Skin failure is judged with the Tsai-Wu criterion, plus crush and shear checks on the honeycomb core.</li>
           <li>Picked the lightest layup that met those criteria and calculated the mass saving against the 3.45 lb baseline.</li>
-          <li>Made punch-shear samples of the chosen layup, tested them to the FSAE laminate test method and compared the results with the simulation.</li>
+          <li>Made perimeter shear samples of three candidate skins, tested them per F.4.2.5 and compared the results with the simulation.</li>
         </ol>
 
         <h3>Making and testing the samples</h3>
         <ul>
           <li>The samples are sandwich panels: carbon fiber skins on a Nomex honeycomb core (0.19 in thick, 3 lb/ft³).</li>
           <li>The skins are wet laid up and cured under vacuum bags, then cut into 100 × 100 mm squares and bonded to the core with Loctite adhesive, with no core filler.</li>
-          <li>Each sample's thickness is measured with calipers. The sample then goes on a supported fixture in an Instron testing machine with a 50 kN load cell, and a 25 mm cylindrical punch is driven into it over a 32 mm support hole, following the FSAE perimeter shear test.</li>
+          <li>Each sample's thickness is measured with calipers. The sample then goes on a supported fixture in an Instron testing machine with a 50 kN load cell, and a 25 mm flat punch is pushed through it over a 32 mm support hole, unclamped, as F.4.2.5 requires.</li>
           <li>Comparing the measured load and displacement with the simulation of the same layup shows how far the model can be trusted.</li>
         </ul>
 
@@ -134,7 +134,13 @@
         </div>
 
         <h3>Material selection</h3>
-        <p>Carbon fiber's strength and stiffness depend on direction, which is why the ply orientation study mattered. The team prefers the AP Tech triaxial layup because it's the easiest to produce. <span class="todo">Add the fabric, resin and ply count you settled on.</span></p>
+        <p>Carbon fiber's strength and stiffness depend on direction, which is why the ply study mattered. We tested three skins:</p>
+        <ul>
+          <li>3K 8-harness satin, 7 plies on each side of the Nomex core</li>
+          <li>Hexcel 3K 2×2 twill, 7 plies on each side of the Nomex core</li>
+          <li>AP Tech quasi-isotropic triaxial 12K, 6 plies as a solid laminate</li>
+        </ul>
+        <p>The team prefers the AP Tech triaxial because it's the easiest to produce.</p>
 
         <h3>Trade-offs</h3>
         <ul>
@@ -145,7 +151,7 @@
       <!-- 5. Visuals -->
       <section id="gallery" class="gallery">
         <h2>Gallery</h2>
-        <p class="gallery-note">Select any image to see it full size. Use the arrow keys to move between images. The CAD and analysis slots are waiting for your SOLIDWORKS and ANSYS screenshots.</p>
+        <p class="gallery-note">Select any image to see it full size. Use the arrow keys to move between images. The CAD slots are waiting for your SOLIDWORKS model and the full-plate ACP model.</p>
 
         <!-- To add an image, replace a placeholder <li> with:
         <li><figure><a class="g-item photo" href="../assets/img/aip/FILE.jpg"><img src="../assets/img/aip/FILE.jpg" alt="What the image shows" loading="lazy"></a><figcaption>Your caption.</figcaption></figure></li>
@@ -159,11 +165,17 @@
           <li><figure><div class="ph">ACP ply stack or fiber directions<br><code>aip/acp-plies.jpg</code></div><figcaption>Ply orientations in ANSYS ACP.</figcaption></figure></li>
         </ul>
 
-        <h3>Analysis</h3>
+        <h3>Analysis and test data</h3>
         <ul class="gallery-grid">
-          <li><figure><div class="ph">Stress plot<br><code>aip/stress.jpg</code></div><figcaption>Stress under the punch load.</figcaption></figure></li>
-          <li><figure><div class="ph">Failure criterion plot<br><code>aip/failure.jpg</code></div><figcaption>Failure index for the chosen layup.</figcaption></figure></li>
-          <li><figure><div class="ph">Deformation plot<br><code>aip/deformation.jpg</code></div><figcaption>Deflection under load.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/sim-vs-lab.jpg"><img src="../assets/img/cola/thumbs/sim-vs-lab.jpg" alt="Lab versus COLA first-peak load chart" loading="lazy"></a><figcaption>Lab test against COLA prediction: within 1% for satin, exact for twill.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-satin-tsaiwu.jpg"><img src="../assets/img/cola/thumbs/punch-satin-tsaiwu.jpg" alt="Tsai-Wu failure index contour on the satin sandwich punch sample" loading="lazy"></a><figcaption>Tsai-Wu failure index, satin sandwich sample under the punch.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-satin-deformation.jpg"><img src="../assets/img/cola/thumbs/punch-satin-deformation.jpg" alt="Deformation contour on the satin sandwich punch sample" loading="lazy"></a><figcaption>Deformation, satin sandwich sample.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-twill-tsaiwu.jpg"><img src="../assets/img/cola/thumbs/punch-twill-tsaiwu.jpg" alt="Tsai-Wu failure index contour on the twill sandwich punch sample" loading="lazy"></a><figcaption>Tsai-Wu failure index, twill sandwich sample.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-twill-deformation.jpg"><img src="../assets/img/cola/thumbs/punch-twill-deformation.jpg" alt="Deformation contour on the twill sandwich punch sample" loading="lazy"></a><figcaption>Deformation, twill sandwich sample.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-triaxial-tsaiwu.jpg"><img src="../assets/img/cola/thumbs/punch-triaxial-tsaiwu.jpg" alt="Tsai-Wu contour on the solid triaxial punch sample" loading="lazy"></a><figcaption>Tsai-Wu failure index, 6-ply solid triaxial sample.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-satin4.jpg"><img src="../assets/img/cola/thumbs/lab-satin4.jpg" alt="Instron force-displacement curve for satin sample 4" loading="lazy"></a><figcaption>Instron curve, satin sample: first peak near 5 kN, maximum about 43 kN.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-twill5.jpg"><img src="../assets/img/cola/thumbs/lab-twill5.jpg" alt="Instron force-displacement curve for twill sample 5" loading="lazy"></a><figcaption>Instron curve, twill sample: first peak near 3.4 kN, maximum about 17 kN.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-triaxial1.jpg"><img src="../assets/img/cola/thumbs/lab-triaxial1.jpg" alt="Instron force-displacement curve for triaxial sample 1" loading="lazy"></a><figcaption>Instron curve, solid triaxial sample: maximum about 16 kN.</figcaption></figure></li>
         </ul>
 
         <h3>Fabrication</h3>
@@ -204,10 +216,14 @@
       <!-- 6. Results and impact -->
       <section id="results">
         <h2>Results and impact</h2>
+        <figure class="shot shot-wide">
+          <img src="../assets/img/cola/sim-vs-lab.jpg" alt="Bar chart: lab first-peak load 5.12 kN versus COLA 5.09 kN for satin, and 3.43 kN versus 3.43 kN for twill" width="2000" height="1120" loading="lazy">
+          <figcaption>Lab versus simulation for the two sandwich layups.</figcaption>
+        </figure>
         <ul>
-          <li><strong>78% projected weight reduction</strong> versus the baseline design, from the ACP simulation.</li>
-          <li><strong>No sample failed</strong> in punch-shear testing of the 100 × 100 mm sandwich samples in October 2026, measured against the FSAE requirements.</li>
-          <li><strong>The simulation matched the lab.</strong> Running the same samples through <a href="cola.html">COLA</a> produced the same results as the physical tests. <span class="todo">Add the sim-vs-test comparison images from the COLA runs.</span></li>
+          <li><strong>78% projected weight reduction</strong> versus the 3.45 lb baseline, from the ACP simulation.</li>
+          <li><strong>No sample failed the requirement.</strong> Every perimeter shear sample peaked at roughly 16–43 kN, well above the 4 kN minimum that F.4.2.5(h) points to.</li>
+          <li><strong>The simulation matched the lab.</strong> <a href="cola.html">COLA</a> predicted first-peak loads of 5.09 kN for the satin sandwich and 3.43 kN for the twill. The Instron measured 5.12 kN and 3.43 kN.</li>
         </ul>
 
         <h3>What's next</h3>

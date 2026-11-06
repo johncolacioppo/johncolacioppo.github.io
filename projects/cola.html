@@ -33,11 +33,11 @@
       <h1>COLA</h1>
       <p class="lede">Composite Optimization &amp; Logistics Automation</p>
       <p class="timeframe">Agentic AI workflow for UConn Formula SAE, 2026–present</p>
-      <p class="outcome">An automated ANSYS Workbench and ACP workflow for composite layups, built by AI agents from my idea and my initial AIP study. It predicted the same results as our lab punch-shear tests on the anti-intrusion plate samples.</p>
+      <p class="outcome">An automated ANSYS Workbench and ACP workflow for composite layups, built by AI agents from my idea and my initial AIP study. Its predictions land within 1% of our lab punch-shear tests on the anti-intrusion plate samples.</p>
       <ul class="key-results">
-        <li><b>Sim = test</b><span>matched the lab punch-shear results for the AIP samples</span></li>
-        <li><b>30–40 min</b><span>for a typical run on my workstation</span></li>
-        <!-- Add once confirmed: <li><b>___ layups</b><span>evaluated in ___ hours</span></li> -->
+        <li><b>Sim = test</b><span>matched the lab punch-shear results for both sandwich layups</span></li>
+        <li><b>&lt;1%</b><span>gap between predicted and measured first-peak load</span></li>
+        <li><b>12 layups</b><span>set up, solved and ranked in 11 minutes for a punch-test sweep</span></li>
       </ul>
       <dl class="facts">
         <div><dt>Type</dt><dd>Agentic AI workflow</dd></div>
@@ -57,8 +57,8 @@
 
     <div class="case-body">
       <figure class="shot shot-wide">
-        <!-- Replace with: <img src="../assets/img/cola/pipeline.jpg" alt="Diagram of the COLA workflow"> -->
-        <div class="ph">Main image: a COLA run or a simulation-versus-test comparison<br><code>assets/img/cola/pipeline.jpg</code></div>
+        <img src="../assets/img/cola/sim-vs-lab.jpg" alt="Bar chart: lab first-peak load 5.12 kN versus COLA 5.09 kN for satin, and 3.43 kN versus 3.43 kN for twill" width="2000" height="1120">
+        <figcaption>COLA's predicted first-peak loads against the Instron results for the two sandwich layups.</figcaption>
       </figure>
 
       <section id="overview">
@@ -77,9 +77,9 @@
             <tbody>
               <tr><td>Accuracy</td><td>Predictions must match lab tests of the same layups before the team relies on them</td></tr>
               <tr><td>Test access</td><td>Limited Instron time; 3-point bend testing must be outsourced</td></tr>
-              <tr><td>Materials</td><td>Must use the team's real fabrics and core, defined in a library of XML material files</td></tr>
+              <tr><td>Materials</td><td>Must use the team's real fabrics and core: 13 XML material files, corrected with ply thicknesses and weights measured on our own samples</td></tr>
               <tr><td>Software</td><td>ANSYS Workbench and ACP on a UConn student license</td></tr>
-              <tr><td>Run time</td><td>About 30–40 minutes per run on my workstation; larger studies can go to the UConn HPC cluster</td></tr>
+              <tr><td>Run time</td><td>Coupon sweeps take 11 minutes (12 punch-test layups) to about an hour (12 three-point bend layups) on my workstation; bigger parts can go to the UConn HPC cluster</td></tr>
             </tbody>
           </table>
         </div>
@@ -102,7 +102,7 @@
           <div>
             <h3>What the AI did</h3>
             <ul>
-              <li>Claude and Gemini wrote the Python code and worked together to debug and improve it.</li>
+              <li>Gemini wrote the code, Claude found and fixed the errors, and Gemini checked it again. They went back and forth like that until it worked.</li>
               <li>They turned my manual ACP steps into a repeatable, scripted workflow.</li>
             </ul>
           </div>
@@ -114,22 +114,25 @@
         <h2>Process and technical details</h2>
 
         <h3>How the workflow runs</h3>
-        <p>Everything starts from one script, <code>run_pipeline.py</code>, which drives ANSYS Workbench and ACP.</p>
+        <p>Everything starts from one launcher, <code>RUN_PIPELINE.bat</code>, which runs <code>run_pipeline.py</code> and drives ANSYS Workbench in the background.</p>
         <ol>
-          <li>Load material properties from the XML material library.</li>
-          <li><span class="todo">Generate the candidate layups (from the COLA folder).</span></li>
-          <li>Build each layup in ACP on the part geometry and solve it in Workbench.</li>
-          <li><span class="todo">Score and rank the results (from the COLA folder).</span></li>
+          <li><strong>Match the part to the rules.</strong> COLA reads the CAD file name and picks one of 13 FSAE 2027 rule presets, such as the anti-intrusion plate, aero wing, side impact panel or punch-test coupon. The preset sets the loads, deflection limits and safety factors.</li>
+          <li><strong>Load the materials.</strong> Properties come from 13 XML material definitions, with ply thicknesses and areal weights replaced by values measured on our own wet-layup samples.</li>
+          <li><strong>Build the sweep.</strong> Every listed fabric is tried across a range of ply counts, both as a solid laminate and as a Nomex honeycomb sandwich.</li>
+          <li><strong>Solve.</strong> Each layup is built in ACP and solved in ANSYS Mechanical with no one clicking through it.</li>
+          <li><strong>Check and rank.</strong> Each result is checked against the preset's FSAE criteria: deflection, Tsai-Wu safety factor on the skins, and crush and shear on the core. Passing layups are ranked lightest first, using the team's resin and part-weight calculator, and the run writes contour plots, trade-off charts and a recommended layup.</li>
         </ol>
 
         <h3>Getting closer to the lab</h3>
-        <p>Instead of trading accuracy for speed, I keep pushing COLA toward the real test data. Each time I give it more information about a part, such as how the sandwich panels are built and how the samples actually behaved under the punch, its predictions get closer to what we measure on the Instron. The AIP punch-shear samples were the first full check, and COLA matched them.</p>
+        <p>Instead of trading accuracy for speed, I keep pushing COLA toward the real test data. Every time I give it more information about how our parts are actually built, its predictions get closer to what we measure on the Instron.</p>
+        <ul>
+          <li><strong>Measured inputs:</strong> cured ply thicknesses and weights from calipers and scales on our samples, and the real 0.19 in Nomex core.</li>
+          <li><strong>One calibrated value:</strong> the core's effective crush strength includes our adhesive bond lines, so no data sheet has it. COLA found the single value, 3.95 MPa, that reproduces both sandwich punch tests at once. One value matching two different layups is why I trust it on the bend test next.</li>
+          <li><strong>Honest gaps:</strong> core shear strengths are still data-sheet values. The 3-point bend test will check them.</li>
+        </ul>
 
         <h3>Working with AI agents</h3>
-        <ul>
-          <li>Claude and Gemini worked together on the code. <span class="todo">Add how you split the work between them, if you want to show it.</span></li>
-          <li>The engineering judgment stays with me. The agents can write code fast, but deciding whether a result is physically right means comparing it to real tests.</li>
-        </ul>
+        <p>The two models worked in a feedback loop. Gemini wrote the first version of the code, then Claude reviewed it, found errors and fixed them. Gemini checked Claude's changes, and they kept passing the code back and forth until it ran correctly. My job through all of it was the engineering: deciding what COLA needed to predict, supplying real data, and judging whether each result made physical sense against the tests.</p>
       </section>
 
       <!-- 5. Visuals -->
@@ -142,38 +145,58 @@
              For a video clip:
         <li><figure><video src="../assets/img/cola/FILE.mp4" controls muted playsinline preload="metadata"></video><figcaption>Your caption.</figcaption></figure></li> -->
 
-        <h3>CAD and models</h3>
+        <h3>Models</h3>
         <ul class="gallery-grid">
-          <li><figure><div class="ph">Aero wing geometry<br><code>cola/wing.jpg</code></div><figcaption>The aero wing, the first part run through the pipeline.</figcaption></figure></li>
-          <li><figure><div class="ph">Generated ACP model<br><code>cola/acp-model.jpg</code></div><figcaption>A layup built automatically in ACP.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-twill-deformation.jpg"><img src="../assets/img/cola/thumbs/punch-twill-deformation.jpg" alt="Deformation contour of the punch-test coupon model" loading="lazy"></a><figcaption>Punch-test coupon model: 100 × 100 mm, 25 mm punch, 32 mm support hole.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/bend-twill-deformation.jpg"><img src="../assets/img/cola/thumbs/bend-twill-deformation.jpg" alt="Deformation contour of the 3-point bend coupon model" loading="lazy"></a><figcaption>Three-point bend coupon model, twill sandwich.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-satin-deformation.jpg"><img src="../assets/img/cola/thumbs/punch-satin-deformation.jpg" alt="Deformation contour of the satin sandwich coupon" loading="lazy"></a><figcaption>Satin sandwich coupon under the punch.</figcaption></figure></li>
         </ul>
 
-        <h3>Analysis and code</h3>
+        <h3>Analysis</h3>
         <ul class="gallery-grid">
-          <li><figure><div class="ph">Results comparison or ranking plot<br><code>cola/results.jpg</code></div><figcaption>Candidate layups compared side by side.</figcaption></figure></li>
-          <li><figure><div class="ph">Simulation versus test plot<br><code>cola/validation.jpg</code></div><figcaption>Predicted against measured results.</figcaption></figure></li>
-          <li><figure><div class="ph">Code or terminal screenshot<br><code>cola/code.jpg</code></div><figcaption>The pipeline running.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/sim-vs-lab.jpg"><img src="../assets/img/cola/thumbs/sim-vs-lab.jpg" alt="Lab versus COLA first-peak load chart" loading="lazy"></a><figcaption>Lab against COLA: 5.12 vs 5.09 kN (satin) and 3.43 vs 3.43 kN (twill).</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-satin-tsaiwu.jpg"><img src="../assets/img/cola/thumbs/punch-satin-tsaiwu.jpg" alt="Tsai-Wu failure index on the satin coupon" loading="lazy"></a><figcaption>Tsai-Wu failure index, satin sandwich.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-twill-tsaiwu.jpg"><img src="../assets/img/cola/thumbs/punch-twill-tsaiwu.jpg" alt="Tsai-Wu failure index on the twill coupon" loading="lazy"></a><figcaption>Tsai-Wu failure index, twill sandwich.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/punch-triaxial-tsaiwu.jpg"><img src="../assets/img/cola/thumbs/punch-triaxial-tsaiwu.jpg" alt="Tsai-Wu failure index on the triaxial coupon" loading="lazy"></a><figcaption>Tsai-Wu failure index, 6-ply solid triaxial.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/bend-twill-tsaiwu.jpg"><img src="../assets/img/cola/thumbs/bend-twill-tsaiwu.jpg" alt="Tsai-Wu failure index on the 3-point bend coupon" loading="lazy"></a><figcaption>Tsai-Wu failure index, 3-point bend coupon.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/tradeoff-punch-twill.jpg"><img src="../assets/img/cola/thumbs/tradeoff-punch-twill.jpg" alt="COLA trade-off chart of mass against deflection and failure index, twill punch coupon" loading="lazy"></a><figcaption>Trade-off chart COLA writes for every run: mass against deflection and failure index.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/tradeoff-punch-satin.jpg"><img src="../assets/img/cola/thumbs/tradeoff-punch-satin.jpg" alt="COLA trade-off chart for the satin punch coupon" loading="lazy"></a><figcaption>Trade-off chart, satin punch coupon.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/tradeoff-bend-twill.jpg"><img src="../assets/img/cola/thumbs/tradeoff-bend-twill.jpg" alt="COLA trade-off chart for the 3-point bend coupon" loading="lazy"></a><figcaption>Trade-off chart, 3-point bend coupon.</figcaption></figure></li>
         </ul>
 
-        <h3>Physical testing</h3>
+        <h3>Lab validation</h3>
         <ul class="gallery-grid">
-          <li><figure><div class="ph">Test samples<br><code>cola/samples.jpg</code></div><figcaption>Samples made for validation.</figcaption></figure></li>
-          <li><figure><div class="ph">Three-point bend setup<br><code>cola/bend-test.jpg</code></div><figcaption>Bend test setup.</figcaption></figure></li>
-          <li><figure><div class="ph">Explainer video<br><code>cola/explainer.mp4</code> or a YouTube embed</div><figcaption>How the pipeline works, start to finish.</figcaption></figure></li>
+          <li><figure><a class="g-item photo" href="../assets/img/aip/sample-in-fixture.jpg"><img src="../assets/img/aip/thumbs/sample-in-fixture.jpg" alt="Sample on the punch-shear fixture under the Instron load cell" loading="lazy"></a><figcaption>The lab test COLA is checked against: F.4.2.5 punch-shear on an Instron.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-satin3.jpg"><img src="../assets/img/cola/thumbs/lab-satin3.jpg" alt="Instron force-displacement curve, satin sample 3" loading="lazy"></a><figcaption>Instron curve, satin sample 3: first peak near 5 kN.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-satin4.jpg"><img src="../assets/img/cola/thumbs/lab-satin4.jpg" alt="Instron force-displacement curve, satin sample 4" loading="lazy"></a><figcaption>Instron curve, satin sample 4: maximum about 43 kN.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-twill5.jpg"><img src="../assets/img/cola/thumbs/lab-twill5.jpg" alt="Instron force-displacement curve, twill sample 5" loading="lazy"></a><figcaption>Instron curve, twill sample 5: first peak near 3.4 kN.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-twill6.jpg"><img src="../assets/img/cola/thumbs/lab-twill6.jpg" alt="Instron force-displacement curve, twill sample 6" loading="lazy"></a><figcaption>Instron curve, twill sample 6.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-triaxial1.jpg"><img src="../assets/img/cola/thumbs/lab-triaxial1.jpg" alt="Instron force-displacement curve, triaxial sample 1" loading="lazy"></a><figcaption>Instron curve, solid triaxial sample 1.</figcaption></figure></li>
+          <li><figure><a class="g-item" href="../assets/img/cola/lab-triaxial2.jpg"><img src="../assets/img/cola/thumbs/lab-triaxial2.jpg" alt="Instron force-displacement curve, triaxial sample 2" loading="lazy"></a><figcaption>Instron curve, solid triaxial sample 2.</figcaption></figure></li>
+          <li><figure><div class="ph">Explainer video<br><code>cola/explainer.mp4</code> or a YouTube embed</div><figcaption>How COLA works, start to finish.</figcaption></figure></li>
         </ul>
       </section>
 
       <!-- 6. Results and impact -->
       <section id="results">
         <h2>Results and impact</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th scope="col">Sample (F.4.2.5 punch test)</th><th scope="col">Lab first peak</th><th scope="col">COLA prediction</th><th scope="col">Difference</th></tr></thead>
+            <tbody>
+              <tr><td>8-harness satin, 7 / Nomex / 7</td><td>5.12 kN</td><td>5.09 kN</td><td>0.6%</td></tr>
+              <tr><td>2×2 twill, 7 / Nomex / 7</td><td>3.43 kN</td><td>3.43 kN</td><td>0%</td></tr>
+            </tbody>
+          </table>
+        </div>
         <ul>
-          <li><strong>Matches the lab today:</strong> COLA produced the same results as our physical punch-shear tests on the anti-intrusion plate samples.</li>
-          <li><strong>Typical run:</strong> about 30–40 minutes on my workstation. <span class="todo">Add how many layups it evaluates in how many hours.</span></li>
-          <li><strong>Impact:</strong> with a validated model, the team can predict results before spending limited Instron time or paying for outsourced tests.</li>
+          <li><strong>Matches the lab today:</strong> COLA reproduces our physical punch-shear results on the anti-intrusion plate samples.</li>
+          <li><strong>Fast:</strong> a 12-layup punch-test sweep runs in 11 minutes, and a 12-layup 3-point bend sweep in about an hour, on my workstation.</li>
+          <li><strong>Impact:</strong> with a validated model, the team can predict results before spending scarce Instron time or paying for outsourced tests.</li>
         </ul>
 
         <h3>What's next</h3>
-        <p>Use COLA to predict the anti-intrusion plate's 3-point bend result before the outsourced test, then compare. After that, the aero wing. COLA is an internal team tool, and I'm not planning to release it publicly.</p>
+        <p>Predict the anti-intrusion plate's 3-point bend result before the outsourced test, then compare it with the real number. After that, the aero wing. COLA is an internal team tool, and I'm not planning to release it publicly.</p>
       </section>
     </div>
   </main>
