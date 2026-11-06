@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>COLA: Composite Optimization &amp; Logistics Automation — John Colacioppo</title>
-  <meta name="description" content="COLA (Composite Optimization &amp; Logistics Automation), a Python pipeline that automates composite layup studies in ANSYS Workbench and ACP for UConn Formula SAE parts.">
+  <meta name="description" content="COLA (Composite Optimization &amp; Logistics Automation), an agentic AI workflow that automates composite layup studies in ANSYS Workbench and ACP for UConn Formula SAE.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,19 +32,18 @@
       <a class="back" href="../#projects">All projects</a>
       <h1>COLA</h1>
       <p class="lede">Composite Optimization &amp; Logistics Automation</p>
-      <p class="timeframe">Personal project for UConn Formula SAE, 2026–present</p>
-      <p class="outcome">A Python pipeline that builds, solves and compares composite layups in ANSYS Workbench and ACP from a single script, checked against lab tests before it's trusted on car parts.</p>
+      <p class="timeframe">Agentic AI workflow for UConn Formula SAE, 2026–present</p>
+      <p class="outcome">An automated ANSYS Workbench and ACP workflow for composite layups, built by AI agents from my idea and my initial AIP study. It predicted the same results as our lab punch-shear tests on the anti-intrusion plate samples.</p>
       <ul class="key-results">
-        <li><b>1 script</b><span>runs the whole study, from materials to solved results</span></li>
-        <!-- Replace or add results as you get them, for example:
-        <li><b>___</b><span>layups evaluated in one run</span></li>
-        <li><b>___ hrs → ___ min</b><span>setup time per layup, by hand versus automated</span></li> -->
+        <li><b>Sim = test</b><span>matched the lab punch-shear results for the AIP samples</span></li>
+        <li><b>30–40 min</b><span>for a typical run on my workstation</span></li>
+        <!-- Add once confirmed: <li><b>___ layups</b><span>evaluated in ___ hours</span></li> -->
       </ul>
       <dl class="facts">
-        <div><dt>Type</dt><dd>Solo project</dd></div>
-        <div><dt>First target</dt><dd>FSAE aero wing</dd></div>
-        <div><dt>Status</dt><dd>In development</dd></div>
-        <div><dt>Tools</dt><dd>Python, ANSYS Workbench, ACP</dd></div>
+        <div><dt>Type</dt><dd>Agentic AI workflow</dd></div>
+        <div><dt>Built with</dt><dd>Claude and Gemini</dd></div>
+        <div><dt>Status</dt><dd>Internal tool; not public</dd></div>
+        <div><dt>Tools</dt><dd>Python, ANSYS Workbench and ACP (UConn student license)</dd></div>
       </dl>
       <ul class="toc" aria-label="On this page">
         <li><a href="#overview">Overview</a></li>
@@ -58,27 +57,29 @@
 
     <div class="case-body">
       <figure class="shot shot-wide">
-        <!-- Replace with: <img src="../assets/img/cola/pipeline.jpg" alt="Diagram of the optimizer pipeline"> -->
-        <div class="ph">Main image: a pipeline diagram or a results screenshot<br><code>assets/img/cola/pipeline.jpg</code></div>
+        <!-- Replace with: <img src="../assets/img/cola/pipeline.jpg" alt="Diagram of the COLA workflow"> -->
+        <div class="ph">Main image: a COLA run or a simulation-versus-test comparison<br><code>assets/img/cola/pipeline.jpg</code></div>
       </figure>
 
       <section id="overview">
         <h2>Overview</h2>
-        <p>COLA, short for Composite Optimization &amp; Logistics Automation, is my Python pipeline for composite design. Setting up a composite layup in ACP, solving it and comparing it with the last one takes a lot of repeated clicking. I'm building a tool that does that loop automatically, so I can compare many layups for a part and use the same method on any composite component on the car. The first part I'm using it on is the aero wing.</p>
+        <p>COLA is an agentic AI workflow: AI agents wrote and refine the code, and I direct them as the engineer. I came up with the idea and ran the initial anti-intrusion plate study by hand. Then I had Claude and Gemini work together to turn that study into an automated workflow that sets up, solves and compares composite layups in ANSYS.</p>
+        <p>I didn't write the Python. My work is the engineering: defining what the tool has to predict, giving it data on our parts, materials and test results, checking its output against the lab, and steering the agents until the two agree.</p>
       </section>
 
       <!-- 2. Objective and constraints -->
       <section id="objective">
         <h2>Objective and constraints</h2>
-        <p>Find the best layup for a composite part without setting up every option by hand, and make the results trustworthy enough to design from.</p>
+        <p>Predict physical test results accurately enough that the team can skip tests it can't easily run. Accuracy is the whole point. We have limited access to the Instron machine, and the 3-point bend test the anti-intrusion plate still needs has to be outsourced because the machines at UConn can't run it. Every test COLA can predict reliably saves time and money.</p>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th scope="col">Constraint</th><th scope="col">Limit</th></tr></thead>
             <tbody>
-              <tr><td>Accuracy</td><td>Predictions have to match lab tests of the same layups before the tool is used on new parts</td></tr>
-              <tr><td>Materials</td><td>Has to use the team's actual fabrics, defined in my own XML material files</td></tr>
-              <tr><td>Software</td><td><span class="todo">add your ANSYS license type and any mesh or node limit it puts on the model</span></td></tr>
-              <tr><td>Run time</td><td><span class="todo">add how long one layup takes to solve and how many you need per study</span></td></tr>
+              <tr><td>Accuracy</td><td>Predictions must match lab tests of the same layups before the team relies on them</td></tr>
+              <tr><td>Test access</td><td>Limited Instron time; 3-point bend testing must be outsourced</td></tr>
+              <tr><td>Materials</td><td>Must use the team's real fabrics and core, defined in a library of XML material files</td></tr>
+              <tr><td>Software</td><td>ANSYS Workbench and ACP on a UConn student license</td></tr>
+              <tr><td>Run time</td><td>About 30–40 minutes per run on my workstation; larger studies can go to the UConn HPC cluster</td></tr>
             </tbody>
           </table>
         </div>
@@ -87,32 +88,47 @@
       <!-- 3. Specific role -->
       <section id="role">
         <h2>My role</h2>
-        <p>This is my own project. I designed the pipeline, wrote the Python code, built the material library and set up the validation tests.</p>
+        <div class="role-split">
+          <div>
+            <h3>What I did</h3>
+            <ul>
+              <li>Came up with the idea for COLA.</li>
+              <li>Ran the initial anti-intrusion plate study in ANSYS ACP that the workflow is based on.</li>
+              <li>Directed Claude and Gemini through building and refining the workflow.</li>
+              <li>Supplied the engineering data: part geometry, material properties and our lab test results.</li>
+              <li>Validated every result against physical tests and fed the gaps back in.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>What the AI did</h3>
+            <ul>
+              <li>Claude and Gemini wrote the Python code and worked together to debug and improve it.</li>
+              <li>They turned my manual ACP steps into a repeatable, scripted workflow.</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <!-- 4. Process and technical details -->
       <section id="process">
         <h2>Process and technical details</h2>
 
-        <h3>How the pipeline works</h3>
-        <p>Everything runs from <code>run_pipeline.py</code>, which drives ANSYS Workbench and ACP.</p>
+        <h3>How the workflow runs</h3>
+        <p>Everything starts from one script, <code>run_pipeline.py</code>, which drives ANSYS Workbench and ACP.</p>
         <ol>
-          <li>Load material properties from my library of XML material definitions.</li>
-          <li><span class="todo">Generate the candidate layups (describe how: a fixed list, a parameter sweep, or an optimizer).</span></li>
+          <li>Load material properties from the XML material library.</li>
+          <li><span class="todo">Generate the candidate layups (from the COLA folder).</span></li>
           <li>Build each layup in ACP on the part geometry and solve it in Workbench.</li>
-          <li><span class="todo">Score and rank the results (describe the criteria, such as mass, failure index or deflection).</span></li>
+          <li><span class="todo">Score and rank the results (from the COLA folder).</span></li>
         </ol>
 
-        <h3>Validation</h3>
-        <p>A simulation is only useful if it matches the real part, so I test the same layups in the lab and compare.</p>
-        <ul>
-          <li>Punch-shear tests on 100 × 100 mm samples: done, from the <a href="anti-intrusion-plate.html">anti-intrusion plate</a> work.</li>
-          <li>Three-point bend tests: planned.</li>
-        </ul>
+        <h3>Getting closer to the lab</h3>
+        <p>Instead of trading accuracy for speed, I keep pushing COLA toward the real test data. Each time I give it more information about a part, such as how the sandwich panels are built and how the samples actually behaved under the punch, its predictions get closer to what we measure on the Instron. The AIP punch-shear samples were the first full check, and COLA matched them.</p>
 
-        <h3>Trade-offs</h3>
+        <h3>Working with AI agents</h3>
         <ul>
-          <li><span class="todo">Add a design decision you made, such as how many layups to test versus total run time, or how much detail to keep in the mesh.</span></li>
+          <li>Claude and Gemini worked together on the code. <span class="todo">Add how you split the work between them, if you want to show it.</span></li>
+          <li>The engineering judgment stays with me. The agents can write code fast, but deciding whether a result is physically right means comparing it to real tests.</li>
         </ul>
       </section>
 
@@ -151,12 +167,13 @@
       <section id="results">
         <h2>Results and impact</h2>
         <ul>
-          <li><span class="todo">Add what works today, for example "Runs end to end on the aero wing" or "Evaluates ___ layups in ___ hours".</span></li>
-          <li><span class="todo">Add how the simulation compared to the punch-shear tests.</span></li>
+          <li><strong>Matches the lab today:</strong> COLA produced the same results as our physical punch-shear tests on the anti-intrusion plate samples.</li>
+          <li><strong>Typical run:</strong> about 30–40 minutes on my workstation. <span class="todo">Add how many layups it evaluates in how many hours.</span></li>
+          <li><strong>Impact:</strong> with a validated model, the team can predict results before spending limited Instron time or paying for outsourced tests.</li>
         </ul>
 
         <h3>What's next</h3>
-        <p>Get the pipeline running end to end on the aero wing, finish the bend tests, and publish the explainer video. <span class="todo">Add a GitHub link here if the code is public.</span></p>
+        <p>Use COLA to predict the anti-intrusion plate's 3-point bend result before the outsourced test, then compare. After that, the aero wing. COLA is an internal team tool, and I'm not planning to release it publicly.</p>
       </section>
     </div>
   </main>

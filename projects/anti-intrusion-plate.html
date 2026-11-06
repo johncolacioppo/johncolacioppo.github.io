@@ -32,17 +32,16 @@
       <a class="back" href="../#projects">All projects</a>
       <h1>Composite anti-intrusion plate</h1>
       <p class="timeframe">UConn Formula SAE, 2025–present</p>
-      <p class="outcome">A carbon fiber anti-intrusion plate projected to be 78% lighter than the baseline design, with the layup chosen in ANSYS ACP and checked against punch-shear testing.</p>
+      <p class="outcome">A carbon fiber sandwich anti-intrusion plate projected to be 78% lighter than the 3.45 lb baseline. No test sample failed punch-shear testing to the FSAE requirements, and the simulation predicted the same results as the lab.</p>
       <ul class="key-results">
         <li><b>78%</b><span>projected weight reduction versus the baseline plate</span></li>
-        <li><b>100 × 100 mm</b><span>punch-shear samples tested to validate the simulation</span></li>
-        <!-- Add a third result once you have it, for example the plate mass:
-        <li><b>___ g</b><span>composite plate mass, down from ___ g</span></li> -->
+        <li><b>0 failures</b><span>across the 100 × 100 mm punch-shear samples</span></li>
+        <li><b>Sim = test</b><span>simulation matched the lab punch-shear results</span></li>
       </ul>
       <dl class="facts">
         <div><dt>Team</dt><dd>UConn Formula SAE</dd></div>
         <div><dt>My role</dt><dd>Composite design and simulation</dd></div>
-        <div><dt>Status</dt><dd>Validation testing in progress</dd></div>
+        <div><dt>Status</dt><dd>Punch-shear validated; 3-point bend next</dd></div>
         <div><dt>Tools</dt><dd>SOLIDWORKS, ANSYS ACP, Mechanical</dd></div>
       </dl>
       <ul class="toc" aria-label="On this page">
@@ -63,22 +62,21 @@
 
       <section id="overview">
         <h2>Overview</h2>
-        <p>The anti-intrusion plate sits between the impact attenuator and the front bulkhead. In a frontal crash it stops the attenuator from punching into the driver's footwell. The rules give a metal baseline plate, and a composite one is only allowed if the team proves it's equivalent. I'm designing a carbon fiber version that does the same job at a fraction of the weight.</p>
+        <p>The anti-intrusion plate sits between the impact attenuator and the front bulkhead. In a frontal crash it stops the attenuator from punching into the driver's footwell. The rules allow a metal baseline plate, or a composite one if the team proves it meets the composite requirements through testing and analysis. I'm designing a 15 × 16 in carbon fiber sandwich plate that does the same job at a fraction of the weight.</p>
       </section>
 
       <!-- 2. Objective and constraints -->
       <section id="objective">
         <h2>Objective and constraints</h2>
-        <p>Replace the baseline plate with the lightest carbon fiber layup that still passes the Structural Equivalency Spreadsheet (SES) and physical testing.</p>
+        <p>Replace the 3.45 lb baseline plate with the lightest carbon fiber layup that still meets the FSAE rules for composite anti-intrusion plates.</p>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th scope="col">Constraint</th><th scope="col">Limit</th></tr></thead>
             <tbody>
-              <tr><td>Rules</td><td>Must be shown equivalent to the baseline plate through the SES and physical testing</td></tr>
-              <tr><td>Weight</td><td>As light as possible <span class="todo">add the baseline mass and any target</span></td></tr>
-              <tr><td>Size</td><td><span class="todo">add the plate dimensions and how it has to fit the bulkhead and attenuator</span></td></tr>
+              <tr><td>Rules</td><td>FSAE composite AIP rules: the plate must not fail under a 120 kN static load spread over the 200 × 100 mm minimum impact attenuator area, proven with laminate tests plus perimeter shear and 3-point bending analysis</td></tr>
+              <tr><td>Weight</td><td>As light as possible; the baseline plate weighs 3.45 lb</td></tr>
+              <tr><td>Size</td><td>15 × 16 in, to cover the front bulkhead behind the impact attenuator</td></tr>
               <tr><td>Manufacturing</td><td>Has to be buildable by the team, so a simpler layup wins when performance is close</td></tr>
-              <tr><td>Budget</td><td><span class="todo">add the material budget, or delete this row</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -99,7 +97,10 @@
           </div>
           <div>
             <h3>What the team did</h3>
-            <p><span class="todo">Say who else worked on it and what they handled, for example laying up the samples, building the test fixture or designing the mounts.</span></p>
+            <ul>
+              <li>Teammates helped me lay up the test samples.</li>
+              <li>Members of the manufacturing team helped me make the punch-shear test fixtures.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -112,24 +113,24 @@
         <ol>
           <li>Modeled the plate in SOLIDWORKS and brought the surface into ANSYS.</li>
           <li>Built orthotropic material definitions in ACP: separate stiffness and strength values along and across the fibers, instead of one isotropic value like steel.</li>
-          <li>Compared ply angles, ply counts and stacking orders under the punch load. <span class="todo">Name the failure criterion you used, such as Tsai-Wu or max stress.</span></li>
-          <li>Checked the strongest-per-weight layups against the SES requirements and calculated the mass saving.</li>
-          <li>Made and tested punch-shear samples of the chosen layup to see how well the simulation predicts real failure.</li>
+          <li>Compared ply angles, ply counts and stacking orders against the FSAE composite AIP criteria: no failure under 120 kN spread over the 200 × 100 mm impact attenuator area, checked through perimeter shear and 3-point bending.</li>
+          <li>Picked the lightest layup that met those criteria and calculated the mass saving against the 3.45 lb baseline.</li>
+          <li>Made punch-shear samples of the chosen layup, tested them to the FSAE laminate test method and compared the results with the simulation.</li>
         </ol>
 
         <h3>Making and testing the samples</h3>
         <ul>
           <li>The samples are sandwich panels: carbon fiber skins on a Nomex honeycomb core (0.19 in thick, 3 lb/ft³).</li>
           <li>The skins are wet laid up and cured under vacuum bags, then cut into 100 × 100 mm squares and bonded to the core with Loctite adhesive, with no core filler.</li>
-          <li>Each sample's thickness is measured with calipers. The sample then goes on a supported fixture in an Instron testing machine with a 50 kN load cell, and a cylindrical punch is driven into it until it fails.</li>
-          <li>Comparing the measured failure load with the ACP prediction for the same layup shows how far the model can be trusted.</li>
+          <li>Each sample's thickness is measured with calipers. The sample then goes on a supported fixture in an Instron testing machine with a 50 kN load cell, and a 25 mm cylindrical punch is driven into it over a 32 mm support hole, following the FSAE perimeter shear test.</li>
+          <li>Comparing the measured load and displacement with the simulation of the same layup shows how far the model can be trusted.</li>
         </ul>
 
         <h3>Weight calculation</h3>
         <div class="calc">
           <p>Weight reduction = (baseline mass − composite mass) ÷ baseline mass</p>
-          <p><span class="todo">(___ g − ___ g) ÷ ___ g</span></p>
-          <p class="result">= 78% projected reduction</p>
+          <p>(3.45 lb − 0.76 lb) ÷ 3.45 lb ≈ 0.78</p>
+          <p class="result">78% projected reduction, for a composite plate of about 0.76 lb</p>
         </div>
 
         <h3>Material selection</h3>
@@ -138,7 +139,6 @@
         <h3>Trade-offs</h3>
         <ul>
           <li>Producibility over the last bit of mass: a fully custom stack could be slightly lighter, but the triaxial layup is easier to build consistently.</li>
-          <li><span class="todo">Add any other trade-off, such as thickness against stiffness or cost against performance.</span></li>
         </ul>
       </section>
 
@@ -206,12 +206,12 @@
         <h2>Results and impact</h2>
         <ul>
           <li><strong>78% projected weight reduction</strong> versus the baseline design, from the ACP simulation.</li>
-          <li>Punch-shear testing on 100 × 100 mm sandwich samples was completed in October 2026. <span class="todo">Add the measured failure load and how close it was to the prediction.</span></li>
-          <li><span class="todo">Add the SES status: submitted, approved, or still in progress.</span></li>
+          <li><strong>No sample failed</strong> in punch-shear testing of the 100 × 100 mm sandwich samples in October 2026, measured against the FSAE requirements.</li>
+          <li><strong>The simulation matched the lab.</strong> Running the same samples through <a href="cola.html">COLA</a> produced the same results as the physical tests. <span class="todo">Add the sim-vs-test comparison images from the COLA runs.</span></li>
         </ul>
 
         <h3>What's next</h3>
-        <p>Finish correlating the test data with the model, then carry the validated material and layup data into <a href="cola.html">COLA</a>, my layup optimization pipeline, so the same method works on other parts of the car.</p>
+        <p>The 3-point bend test is still to come. The machines at UConn can't run it at this size, so it has to be outsourced. That makes an accurate prediction from <a href="cola.html">COLA</a> beforehand especially valuable.</p>
       </section>
     </div>
   </main>

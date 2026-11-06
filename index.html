@@ -67,9 +67,9 @@
         <h2 id="about-h">About me</h2>
         <div>
           <p>I'm a mechanical engineering student at the University of Connecticut, minoring in aerospace engineering, with my B.S. expected in May 2029. I specialize in composite structures: designing carbon fiber parts, analyzing them in ANSYS, and testing them to see whether the simulation holds up.</p>
-          <p>On the UConn Formula SAE team, I'm designing a carbon fiber anti-intrusion plate that is projected to be 78% lighter than the baseline design. To speed up that kind of work, I'm building COLA, a Python pipeline that automates layup studies in ANSYS Workbench and ACP, and I validate the results with physical tests such as punch-shear samples.</p>
+          <p>On the UConn Formula SAE team, I'm designing a carbon fiber anti-intrusion plate that is projected to be 78% lighter than the 3.45 lb baseline. To speed up that kind of work, I came up with COLA, a workflow built with AI tools that automates composite layup studies in ANSYS Workbench and ACP, and I check its predictions against physical tests such as punch-shear samples.</p>
           <p>I also run Blue Bolt 3D, a small FDM printing business that makes parts for clients ranging from local shops to large companies. Running it has taught me to design around how parts actually get made, and that habit shows up in every project here.</p>
-          <p>My main technical interests are aerospace and defense systems, propulsion, structural design and thermal protection. My goal is a career designing lightweight aerospace structures, where strength, weight and manufacturability all have to be balanced. Right now I'm looking for internships where I can contribute to real design and analysis work.</p>
+          <p>My focus is research and development: taking an idea that hasn't been proven yet, testing it, and turning it into something a team can build and trust. I look for that in every project, whether it's a new material, a new manufacturing process or a new way of using AI tools in engineering work. My goal is a career in R&amp;D, where I can keep prototyping, testing and improving new designs.</p>
         </div>
       </div>
     </section>
@@ -100,9 +100,10 @@
           </figure>
           <div>
             <h3><a href="projects/cola.html">COLA: Composite Optimization &amp; Logistics Automation</a></h3>
-            <p class="context">Personal project for UConn Formula SAE, 2026–present</p>
-            <p>My Python pipeline that drives ANSYS Workbench and ACP to build and evaluate composite layups automatically, using a library of material definitions I wrote. The first target is the car's aero wing. Before using it on other parts, I'm checking its predictions against lab tests of the same layups.</p>
-            <p class="tools">Python, ANSYS Workbench, ANSYS ACP</p>
+            <p class="context">Agentic AI workflow for UConn Formula SAE, 2026–present</p>
+            <p class="stat"><b>Sim = test</b> <span>matched our lab punch-shear results on the AIP samples</span></p>
+            <p>An automated ANSYS Workbench and ACP workflow for composite layups. I came up with the idea and ran the initial study, and Claude and Gemini built the code. I keep feeding it part and test data so its predictions match our lab results, which saves scarce Instron time and outsourced tests.</p>
+            <p class="tools">Claude, Gemini, Python, ANSYS Workbench, ANSYS ACP</p>
             <p><a class="more" href="projects/cola.html">Read the full project</a></p>
           </div>
         </article>
