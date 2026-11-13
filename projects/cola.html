@@ -74,7 +74,7 @@
       <!-- 2. Objective and constraints -->
       <section id="objective">
         <h2>Objective and constraints</h2>
-        <p>Predict physical test results accurately enough that the team can skip tests it can't easily run. Accuracy is the whole point. We have limited access to the Instron machine, and the 3-point bend test the anti-intrusion plate still needs has to be outsourced because the machines at UConn can't run it. Every test COLA can predict reliably saves time and money.</p>
+        <p>Predict physical test results accurately enough that the team can skip tests it can't easily run. Accuracy is the whole point. We have limited access to the Instron machine, and the 3-point bend test a composite anti-intrusion plate needs has to be outsourced because the machines at UConn can't run it. Every test COLA can predict reliably saves time and money.</p>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th scope="col">Constraint</th><th scope="col">Limit</th></tr></thead>
@@ -134,8 +134,8 @@
         <p>Instead of trading accuracy for speed, I keep pushing COLA toward the real test data. The first comparison with our lab tests was off by as much as 250% because of modeling errors. Every time I gave it more information about how our parts are actually built, its predictions got closer, until the error was within 1%.</p>
         <ul>
           <li><strong>Measured inputs:</strong> cured ply thicknesses and weights from calipers and scales on our samples, and the real 0.19 in Nomex core.</li>
-          <li><strong>One calibrated value:</strong> the core's effective crush strength includes our adhesive bond lines, so no data sheet has it. COLA found the single value, 3.95 MPa, that reproduces both sandwich punch tests at once. One value matching two different layups is why I trust it on the bend test next.</li>
-          <li><strong>Honest gaps:</strong> core shear strengths are still data-sheet values. The 3-point bend test will check them.</li>
+          <li><strong>One calibrated value:</strong> the core's effective crush strength includes our adhesive bond lines, so no data sheet has it. COLA found the single value, 3.95 MPa, that reproduces both sandwich punch tests at once. One value matching two different layups is what gives me confidence in the model beyond those two tests.</li>
+          <li><strong>Honest gaps:</strong> core shear strengths are still data-sheet values. A physical 3-point bend test would check them, and none has been run yet.</li>
         </ul>
 
         <h3>Working with AI agents</h3>
@@ -202,7 +202,7 @@
         </ul>
 
         <h3>What's next</h3>
-        <p>Predict the anti-intrusion plate's 3-point bend result before the outsourced test, then compare it with the real number. After that, the aero wing. COLA is an internal team tool, and I'm not planning to release it publicly.</p>
+        <p>Simulating the anti-intrusion plate's 3-point bend test showed the design would not meet the requirement, so the composite plate is on hold. Next is more materials testing to give COLA better data, so its bend predictions can be trusted before paying for an outsourced test. After that, the aero wing. COLA is an internal team tool, and I'm not planning to release it publicly.</p>
       </section>
     </div>
   </main>

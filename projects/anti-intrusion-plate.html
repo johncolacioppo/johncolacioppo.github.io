@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Composite anti-intrusion plate — John Colacioppo</title>
-  <meta name="description" content="Carbon fiber anti-intrusion plate for UConn Formula SAE, designed in SOLIDWORKS and ANSYS ACP. Projected 78% lighter than the baseline.">
+  <meta name="description" content="Carbon fiber anti-intrusion plate for UConn Formula SAE, designed in SOLIDWORKS and ANSYS ACP. Punch-shear validated; on hold after 3-point bend simulations showed the design falls short.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,17 +31,17 @@
     <div class="case-head">
       <a class="back" href="../#projects">All projects</a>
       <h1>Composite anti-intrusion plate</h1>
-      <p class="timeframe">UConn Formula SAE, 2025–present</p>
-      <p class="outcome">A carbon fiber sandwich anti-intrusion plate projected to be 78% lighter than the 3.45 lb baseline. No test sample failed punch-shear testing to the FSAE requirements, and the simulation predicted the same results as the lab.</p>
+      <p class="timeframe">UConn Formula SAE, 2025–2026 · on hold</p>
+      <p class="outcome">A carbon fiber sandwich anti-intrusion plate meant to replace the 3.45 lb baseline. No test sample failed punch-shear testing to the FSAE requirements, and the simulation predicted the same results as the lab. Simulating the 3-point bend test then showed the design would not meet that requirement, so the composite plate is on hold.</p>
       <ul class="key-results">
-        <li><b>78%</b><span>projected weight reduction versus the baseline plate</span></li>
         <li><b>0 failures</b><span>across the 100 × 100 mm punch-shear samples</span></li>
         <li><b>0.6%</b><span>largest gap between simulation and lab punch-shear results</span></li>
+        <li><b>On hold</b><span>3-point bend simulations show the design falls short of the requirement</span></li>
       </ul>
       <dl class="facts">
         <div><dt>Team</dt><dd>UConn Formula SAE</dd></div>
         <div><dt>My role</dt><dd>Composite design and simulation</dd></div>
-        <div><dt>Status</dt><dd>Punch-shear validated; 3-point bend next</dd></div>
+        <div><dt>Status</dt><dd>On hold: does not pass 3-point bend in simulation</dd></div>
         <div><dt>Tools</dt><dd>SOLIDWORKS, ANSYS ACP, Mechanical</dd></div>
       </dl>
       <ul class="toc" aria-label="On this page">
@@ -62,7 +62,7 @@
 
       <section id="overview">
         <h2>Overview</h2>
-        <p>The anti-intrusion plate sits between the impact attenuator and the front bulkhead. In a frontal crash it stops the attenuator from punching into the driver's footwell. The rules allow a metal baseline plate, or a composite one if the team proves it meets the composite requirements through testing and analysis. I'm designing a 15 × 16 in carbon fiber sandwich plate that does the same job at a fraction of the weight.</p>
+        <p>The anti-intrusion plate sits between the impact attenuator and the front bulkhead. In a frontal crash it stops the attenuator from punching into the driver's footwell. The rules allow a metal baseline plate, or a composite one if the team proves it meets the composite requirements through testing and analysis. I designed a 15 × 16 in carbon fiber sandwich plate to do the same job at a fraction of the weight. It got through punch-shear testing, but simulations of the 3-point bend test showed it would not meet that requirement, so the composite plate is on hold and the team is keeping the steel plate for now.</p>
       </section>
 
       <!-- 2. Objective and constraints -->
@@ -73,7 +73,7 @@
           <table class="data">
             <thead><tr><th scope="col">Constraint</th><th scope="col">Limit</th></tr></thead>
             <tbody>
-              <tr><td>Rules</td><td>FSAE Rules F.8.2.1(c) and F.8.3: a composite plate must not fail in a frontal impact and must carry a 120 kN static load spread over the 200 × 100 mm minimum impact attenuator area. We are proving this through F.8.3.2(b): laminate tests (F.4.2.2 three-point bend, F.4.2.5 perimeter shear) plus calculations.</td></tr>
+              <tr><td>Rules</td><td>FSAE Rules F.8.2.1(c) and F.8.3: a composite plate must not fail in a frontal impact and must carry a 120 kN static load spread over the 200 × 100 mm minimum impact attenuator area. The route to proving this is F.8.3.2(b): laminate tests (F.4.2.2 three-point bend, F.4.2.5 perimeter shear) plus calculations.</td></tr>
               <tr><td>Weight</td><td>As light as possible; the baseline plate weighs 3.45 lb</td></tr>
               <tr><td>Size</td><td>15 × 16 in, to cover the front bulkhead behind the impact attenuator</td></tr>
               <tr><td>Manufacturing</td><td>Has to be buildable by the team, so a simpler layup wins when performance is close</td></tr>
@@ -93,6 +93,7 @@
               <li>Defined custom orthotropic material models in ANSYS ACP (Pre) so the simulation reflects the fabrics we actually use.</li>
               <li>Ran the ply orientation and stacking studies in ACP and ANSYS Mechanical.</li>
               <li>Tested 100 × 100 mm punch-shear samples to check the simulation against real parts.</li>
+              <li>Simulated the 3-point bend test, which showed the design would not pass.</li>
             </ul>
           </div>
           <div>
@@ -114,8 +115,9 @@
           <li>Modeled the plate in SOLIDWORKS and brought the surface into ANSYS.</li>
           <li>Built orthotropic material definitions in ACP: separate stiffness and strength values along and across the fibers, instead of one isotropic value like steel.</li>
           <li>Compared fabrics, ply counts and stacking orders against the F.8.3.1 criteria: no failure under 120 kN spread over the 200 × 100 mm impact attenuator area, checked through perimeter shear and 3-point bending per F.8.3.2(b). Skin failure is judged with the Tsai-Wu criterion, plus crush and shear checks on the honeycomb core.</li>
-          <li>Picked the lightest layup that met those criteria and calculated the mass saving against the 3.45 lb baseline.</li>
+          <li>Picked the lightest layup from that first study and calculated the mass saving against the 3.45 lb baseline.</li>
           <li>Made perimeter shear samples of three candidate skins, tested them per F.4.2.5 and compared the results with the simulation.</li>
+          <li>Simulated the F.4.2.2 three-point bend test. The design did not meet the requirement, which put the composite plate on hold.</li>
         </ol>
 
         <h3>Making and testing the samples</h3>
@@ -126,11 +128,12 @@
           <li>Comparing the measured load and displacement with the simulation of the same layup shows how far the model can be trusted.</li>
         </ul>
 
-        <h3>Weight calculation</h3>
+        <h3>Weight target</h3>
+        <p>This is the saving the original design projected. That design does not pass the 3-point bend requirement in simulation, so the number is the target it was chasing and not a result.</p>
         <div class="calc">
           <p>Weight reduction = (baseline mass − composite mass) ÷ baseline mass</p>
           <p>(3.45 lb − 0.76 lb) ÷ 3.45 lb ≈ 0.78</p>
-          <p class="result">78% projected reduction, for a composite plate of about 0.76 lb</p>
+          <p class="result">78% target reduction, for a composite plate of about 0.76 lb</p>
         </div>
 
         <h3>Material selection</h3>
@@ -140,7 +143,7 @@
           <li>Hexcel 3K 2×2 twill, 7 plies on each side of the Nomex core</li>
           <li>AP Tech quasi-isotropic triaxial 12K, 6 plies as a solid laminate</li>
         </ul>
-        <p>The team prefers the AP Tech triaxial because it's the easiest to produce.</p>
+        <p>The team preferred the AP Tech triaxial because it's the easiest to produce.</p>
 
         <h3>Trade-offs</h3>
         <ul>
@@ -215,13 +218,13 @@
           <figcaption>Lab versus simulation for the two sandwich layups.</figcaption>
         </figure>
         <ul>
-          <li><strong>78% projected weight reduction</strong> versus the 3.45 lb baseline, from the ACP simulation.</li>
-          <li><strong>No sample failed the requirement.</strong> Every perimeter shear sample peaked at roughly 16–43 kN, well above the 4 kN minimum that F.4.2.5(h) points to.</li>
+          <li><strong>No punch-shear sample failed the requirement.</strong> Every perimeter shear sample peaked at roughly 16–43 kN, well above the 4 kN minimum that F.4.2.5(h) points to.</li>
           <li><strong>The simulation matched the lab.</strong> <a href="cola.html">COLA</a> predicted first-peak loads of 5.09 kN for the satin sandwich and 3.43 kN for the twill. The Instron measured 5.12 kN and 3.43 kN.</li>
+          <li><strong>The design does not pass 3-point bend in simulation.</strong> The plate needs both laminate tests, so passing punch-shear is not enough. The original design projected a 78% weight reduction, and that saving is no longer claimed.</li>
         </ul>
 
-        <h3>What's next</h3>
-        <p>The 3-point bend test is still to come. The machines at UConn can't run it at this size, so it has to be outsourced. That makes an accurate prediction from <a href="cola.html">COLA</a> beforehand especially valuable.</p>
+        <h3>Where it stands</h3>
+        <p>The composite plate is on hold, not cancelled. The 3-point bend test has to be outsourced because the machines at UConn can't run it at this size, so I simulated it first. The simulations showed the design would not meet the requirement, and the team is keeping the steel plate for now. My focus has moved to materials testing for <a href="cola.html">COLA</a>, so a future design can be checked in simulation before paying for an outsourced test.</p>
       </section>
     </div>
   </main>
